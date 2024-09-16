@@ -7,13 +7,12 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class PekerjaanController extends Controller
 {
     public function index()
     {
-        $title = 'Pekerjaan';
+        $title = 'Data Pekerjaan';
 
         if (request()->ajax()) {
             $pekerjaan = DB::table('pekerjaans')->select('id', 'nama_pekerjaan');
