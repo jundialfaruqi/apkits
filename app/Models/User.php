@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Rancangan::class);
     }
+
+    public function pekerjaanRelasi()
+    {
+        return $this->belongsTo(Pekerjaan::class);
+    }
 }

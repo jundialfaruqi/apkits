@@ -53,7 +53,7 @@
             <div class="container-fluid">
                 <div class="row row-deck row-cards mb-5">
                     <div class="col-md-6 col-xl-3">
-                        <div class="card card-sm border-0 rounded-3 shadow-sm">
+                        <div class="card card-sm border-0 rounded-4 shadow-sm">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
@@ -73,7 +73,7 @@
                                             THL
                                         </div>
                                         <div class="text-secondary">
-                                            10 Orang
+                                            {{ $thlCount }} Orang
                                         </div>
                                     </div>
                                 </div>
@@ -82,12 +82,12 @@
                     </div>
 
                     <div class="col-md-6 col-xl-3">
-                        <div class="card card-sm border-0 rounded-3 shadow-sm">
+                        <div class="card card-sm border-0 rounded-4 shadow-sm">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
                                         <span
-                                            class="bg-red text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                            class="bg-azure text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
                                                 height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -102,7 +102,7 @@
                                             IT Support
                                         </div>
                                         <div class="text-secondary">
-                                            12 Orang
+                                            {{ $itCount }} Orang
                                         </div>
                                     </div>
                                 </div>
@@ -111,27 +111,21 @@
                     </div>
 
                     <div class="col-md-6 col-xl-3">
-                        <div class="card card-sm border-0 rounded-3 shadow-sm">
+                        <div class="card card-sm border-0 rounded-4 shadow-sm">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
                                         <span
-                                            class="bg-red text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                            </svg>
+                                            class="bg-indigo text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-mist"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5h3m4 0h9" /><path d="M3 10h11m4 0h1" /><path d="M5 15h5m4 0h7" /><path d="M3 20h9m4 0h3" /></svg>
                                         </span>
                                     </div>
                                     <div class="col">
                                         <div class="font-weight-medium">
-                                            1352 Members
+                                            Kegiatan
                                         </div>
                                         <div class="text-secondary">
-                                            163 registered today
+                                            Total : {{ $totalRancangans }} Kegiatan
                                         </div>
                                     </div>
                                 </div>
@@ -140,28 +134,21 @@
                     </div>
 
                     <div class="col-md-6 col-xl-3">
-                        <div class="card card-sm border-0 rounded-3 shadow-sm">
+                        <div class="card card-sm border-0 rounded-4 shadow-sm">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
                                         <span
-                                            class="bg-red text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                                height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                stroke="currentColor" fill="none" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                            </svg>
+                                            class="bg-purple text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-list-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M18.5 18.5l2.5 2.5" /><path d="M4 6h16" /><path d="M4 12h4" /><path d="M4 18h4" /></svg>
                                         </span>
                                     </div>
                                     <div class="col">
                                         <div class="font-weight-medium">
-                                            1352 Members
+                                            Kagiatan Harian
                                         </div>
                                         <div class="text-secondary">
-                                            163 registered today
+                                            {{ $totalRancangansToday }} kagiatan hari ini
                                         </div>
                                     </div>
                                 </div>
