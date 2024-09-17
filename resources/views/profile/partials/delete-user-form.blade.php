@@ -1,8 +1,3 @@
-<p class="text-sm text-gray-600">
-    Setelah akun Anda dihapus, semua sumber daya dan data yang terkait akan dihapus secara permanen. Sebelum menghapus
-    akun, silakan backup data atau informasi apa pun yang ingin Anda simpan.
-</p>
-
 <button class="btn btn-danger mb-3 rounded-4" data-bs-toggle="modal" data-bs-target="#confirmUserDeletion">
     Hapus Akun
 </button>

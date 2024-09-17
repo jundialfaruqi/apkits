@@ -1,7 +1,3 @@
-<p class="text-sm text-gray-600">
-    Pastikan akun Anda menggunakan kata sandi yang panjang dan acak agar selalu aman.
-</p>
-
 <form method="post" action="{{ route('password.update') }}" class="mt-3">
     @csrf
     @method('put')
@@ -9,7 +5,7 @@
     <div class="col-md-12 mb-3">
 
         <label for="update_password_current_password" class="form-label">Password Sekarang</label>
-        <div class="col-md-12 mb-3">
+        <div class="col-md-12 col-xl-4 mb-3">
             <input type="password" name="current_password" id="update_password_current_password"
                 autocomplete="current-password" class="form-control rounded-4">
 
@@ -23,7 +19,7 @@
         </div>
 
         <label for="update_password_password" class="form-label">Password Baru</label>
-        <div class="col-md-12 mb-3">
+        <div class="col-md-12 col-xl-4 mb-3">
             <input type="password" name="password" id="update_password_password" autocomplete="new-password"
                 class="form-control rounded-4">
 
@@ -37,7 +33,7 @@
         </div>
 
         <label for="update_password_password_confirmation" class="form-label">Ulangi Password Baru</label>
-        <div class="col-md-12 mb-4">
+        <div class="col-md-12 col-xl-4 mb-4">
             <input id="update_password_password_confirmation" name="password_confirmation" type="password"
                 autocomplete="new-password" class="form-control rounded-4">
 
@@ -51,7 +47,7 @@
         </div>
 
         <button
-            class="btn btn-primary rounded-4 hover:bg-primary-700 hover:text-white transition duration-300 ease-in-out">Update</button>
+            class="btn btn-primary rounded-4 hover:bg-primary-700 hover:text-white transition duration-300 ease-in-out">Buat Password Baru</button>
 
         <div class="mt-4">
 

@@ -1,7 +1,3 @@
-    <p class="text-sm text-gray-600">
-        Perbaharui informasi profil Anda, nama dan alamat email
-    </p>
-
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
@@ -12,8 +8,8 @@
 
         <div class="col-md-12 mb-3">
 
-            <label for="name" class="form-label">Nama</label>
-            <div class="col-md-12 mb-3">
+            <div class="col-md-12 col-xl-4 mb-3">
+                <label for="name" class="form-label">Nama</label>
                 <input type="text" name="name" id="name" autocomplete="name" value="<?php echo $user->name; ?>"
                     class="form-control rounded-4">
 
@@ -28,8 +24,8 @@
                 </div>
             </div>
 
-            <label for="email" class="form-label">Email</label>
-            <div class="col-md-12 mb-4">
+            <div class="col-md-12 col-xl-4 mb-4">
+                <label for="email" class="form-label">Email</label>
                 <input type="text" name="email" id="email" autocomplete="email" value="<?php echo old('email', $user->email); ?>"
                     class="form-control rounded-4">
 
@@ -64,7 +60,7 @@
             @endif
 
             <button
-                class="btn btn-primary rounded-4 hover:bg-primary-700 hover:text-white transition duration-300 ease-in-out">Update</button>
+                class="btn btn-primary rounded-4 hover:bg-primary-700 hover:text-white transition duration-300 ease-in-out">Update Profil</button>
 
             <div class="mt-4">
 
