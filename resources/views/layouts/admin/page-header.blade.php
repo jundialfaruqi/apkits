@@ -70,7 +70,7 @@
                             <div>{{ Auth::user()->name }}</div>
                             {{-- <div class="mt-1 small text-secondary">UI Designer</div> --}}
                         </button>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu rounded-4">
                             <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                 Profil Saya
                             </a>
