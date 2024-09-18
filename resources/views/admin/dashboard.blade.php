@@ -53,17 +53,25 @@
             <div class="container-fluid">
                 <div class="row justify-content-evenly">
                     <div class="col-md-4 mb-3">
-                        <div class="card card-sm border-0 rounded-4 shadow-sm" style="height: 10rem">
-                            <div class="card-body">
-                                <div class="title">
-                                    <p class="h2 text-strong">
-                                        Selamat datang...
-                                    </p>
-                                    <p class="text-secondary"> Di Aplikasi Pelaporan Kegiatan IT Support </p>
+                        <div class="card d-flex flex-column border-0 rounded-4 shadow-sm">
+                            <div class="row row-0 flex-fill">
+                                <div class="col">
+                                    <div class="card-body">
+                                        <h3 class="card-title mb-2"><a href="#">Selamat Datang</a></h3>
+                                        <small class="text-secondary">Di APKITS, Aplikasi Pelaporan Kegiatan IT Support {{ Auth::user()->opd->name }} Kota Pekanbaru</small>
+                                        <div class="d-flex align-items-center pt-2 mt-auto">
+                                            <div>
+                                                <a href="#" class="text-body me-1 btn btn-sm bg-azure-lt rounded-4 shadow-sm py-2 px-2 mb-1">Bantuan</a>
+                                                <a href="#" class="text-body btn btn-sm bg-gray-50 rounded-4 shadow-sm py-2 px-2 mb-1">Tentang</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <div class="col-md-8 mb-3">
                         <div class="col-md-12">
                             <div class="row">
