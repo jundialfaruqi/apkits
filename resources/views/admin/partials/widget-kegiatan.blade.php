@@ -3,31 +3,37 @@
 </div>
 
 @if ($rancangans->isEmpty())
-        <div class="empty">
-            <div class="empty-img"><img src="./static/illustrations/undraw_quitting_time_dm8t.svg" height="128" alt=""></div>
-            <p class="empty-title">Belum ada kegiatan hari ini</p>
-            <p class="empty-subtitle text-secondary">
-                Cobalah membuat kegiatan baru dari menu todolist atau klik tombol Buat Todolist Baru di bawah ini
-            </p>
-            <div class="empty-action">
-                <a href="{{ route('todolist') }}" class="btn btn-primary rounded-4">
-                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-                    Buat Todolist Baru
-                </a>
-            </div>
+    <div class="empty">
+        <div class="empty-img"><img src="./static/illustrations/undraw_quitting_time_dm8t.svg" height="128"
+                alt=""></div>
+        <p class="empty-title">Belum ada kegiatan hari ini</p>
+        <p class="empty-subtitle text-secondary">
+            Cobalah membuat kegiatan baru dari menu todolist atau klik tombol Buat Todolist Baru di bawah ini
+        </p>
+        <div class="empty-action">
+            <a href="{{ route('todolist') }}" class="btn btn-primary rounded-4">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 5l0 14" />
+                    <path d="M5 12l14 0" />
+                </svg>
+                Buat Todolist Baru
+            </a>
         </div>
-    @else
-
-        <div class="col-md-12">
+    </div>
+@else
+    <div class="col-md-12">
         <div class="row justify-content-center">
             @foreach ($rancangans as $rancangan)
                 <div class="col-xl-6">
                     <div class="col-md-12">
                         <small class="text-secondary d-inline-flex align-items-center px-3 py-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
                                 class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
@@ -58,11 +64,10 @@
                                             <h3 class="lh-sm mb-2">{{ $rancangan->jenis_kegiatan }}</h3>
                                             <small>
                                                 <p class="mb-2 d-none d-sm-block">
-                                                    {{ Str::limit($rancangan->pelaksanaan_kerja, 120, '...') }}
+                                                    {{ Str::limit($rancangan->pelaksanaan_kerja, 110, '...') }}
                                                 </p>
                                             </small>
-                                            <small
-                                                class="text-secondary d-flex flex-wrap justify-content-md-start">
+                                            <small class="text-secondary d-flex flex-wrap justify-content-md-start">
                                                 <span class="d-inline-flex align-items-center">
                                                     {{ $rancangan->created_at->diffForHumans() }} -
                                                     {{ $rancangan->tempat }}
@@ -75,12 +80,12 @@
                         </div>
                     </div>
                 </div>
-            @endforeach           
+            @endforeach
         </div>
-        </div>
-        <!-- Pagination Links -->
+    </div>
+    <!-- Pagination Links -->
 
-        <div class="d-flex justify-content-center">
-            {{ $rancangans->links('layouts.admin.custompagination') }}
-        </div>
+    <div class="d-flex justify-content-center">
+        {{ $rancangans->links('layouts.admin.custompagination') }}
+    </div>
 @endif

@@ -1,21 +1,26 @@
-<div class="row justify-content-evenly">
+<div class="row justify-content-center mb-3">
     <div class="col-md-4 mb-3">
-        <div class="card d-flex flex-column border-0 rounded-4 shadow-sm" style="background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center; background-size: cover;">
+        <div class="card d-flex flex-column border-0 rounded-4 shadow-sm"
+            style="background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center; background-size: cover;">
             <div class="row row-0 flex-fill">
                 <div class="col">
                     <div class="card-body">
                         <h3 class="card-title mb-2"><a href="#">Selamat Datang</a></h3>
                         @role('super-admin')
-                            <small class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support dan THL Pemerintah Kota Pekanbaru V.1.0</small>                            
+                            <small class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
+                                dan THL Pemerintah Kota Pekanbaru V.1.0</small>
                         @endrole
-                            
+
                         @role('it-support|admin|thl|staff|kabid|kadis')
-                            <small class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support dan THL {{ Auth::user()->opd->name }} Kota Pekanbaru</small>    
+                            <small class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
+                                dan THL {{ Auth::user()->opd->name }} Kota Pekanbaru</small>
                         @endrole
                         <div class="d-flex align-items-center pt-2 mt-auto">
                             <div>
-                                <a href="#" class="text-body me-1 btn btn-sm bg-azure-lt rounded-4 shadow-sm py-2 px-2 mb-1">Bantuan</a>
-                                <a href="#" class="text-body btn btn-sm bg-gray-50 rounded-4 shadow-sm py-2 px-2 mb-1">Tentang</a>
+                                <a href="#"
+                                    class="text-body me-1 btn btn-sm bg-azure-lt rounded-4 shadow-sm py-2 px-2 mb-1">Bantuan</a>
+                                <a href="#"
+                                    class="text-body btn btn-sm bg-gray-50 rounded-4 shadow-sm py-2 px-2 mb-1">Tentang</a>
                             </div>
                         </div>
                     </div>
@@ -23,7 +28,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-8 mb-3">
         <div class="col-md-12">
             <div class="row">
@@ -34,10 +39,9 @@
                                 <div class="col-auto">
                                     <span
                                         class="bg-primary text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                            width="24" height="24" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
@@ -64,10 +68,9 @@
                                 <div class="col-auto">
                                     <span
                                         class="bg-azure text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                            width="24" height="24" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
@@ -94,10 +97,9 @@
                                 <div class="col-auto">
                                     <span
                                         class="bg-purple text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
                                             class="icon icon-tabler icons-tabler-outline icon-tabler-list-search">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M15 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
@@ -128,10 +130,9 @@
                                 <div class="col-auto">
                                     <span
                                         class="bg-teal text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
                                             class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-month">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path
@@ -168,10 +169,9 @@
                                 <div class="col-auto">
                                     <span
                                         class="bg-indigo text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                             class="icon icon-tabler icons-tabler-outline icon-tabler-mist">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <path d="M5 5h3m4 0h9" />
