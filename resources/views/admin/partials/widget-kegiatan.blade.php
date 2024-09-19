@@ -1,4 +1,4 @@
-<div class="text-center text-muted mb-3">
+<div class="text-muted mb-5 hr-text">
     Kegiatan {{ \Carbon\Carbon::today()->translatedFormat('l, j F Y', 'id_ID') }}
 </div>
 
@@ -7,26 +7,28 @@
         <div class="empty-img"><img src="./static/illustrations/undraw_quitting_time_dm8t.svg" height="128"
                 alt=""></div>
         <p class="empty-title">Belum ada kegiatan hari ini</p>
-        <p class="empty-subtitle text-secondary">
-            Cobalah membuat kegiatan baru dari menu todolist atau klik tombol Buat Todolist Baru di bawah ini
-        </p>
-        <div class="empty-action">
-            <a href="{{ route('todolist') }}" class="btn btn-primary rounded-4">
-                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M12 5l0 14" />
-                    <path d="M5 12l14 0" />
-                </svg>
-                Buat Todolist Baru
-            </a>
-        </div>
+        @can('view todolist')
+            <p class="empty-subtitle text-secondary">
+                Cobalah membuat kegiatan baru dari menu todolist atau klik tombol Buat Todolist Baru di bawah ini
+            </p>
+            <div class="empty-action">
+                <a href="{{ route('todolist') }}" class="btn btn-primary rounded-4">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 5l0 14" />
+                        <path d="M5 12l14 0" />
+                    </svg>
+                    Buat Todolist Baru
+                </a>
+            </div>
+        @endcan
     </div>
 @else
     <div class="col-md-12">
-        <div class="row justify-content-center">
+        <div class="row">
             @foreach ($rancangans as $rancangan)
                 <div class="col-xl-6">
                     <div class="col-md-12">

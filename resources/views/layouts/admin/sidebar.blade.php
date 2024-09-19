@@ -148,7 +148,7 @@
                 @endrole
 
                 @role('super-admin|admin')
-                    <li
+                    <li 
                         class="nav-item dropdown {{ Request::is('admin/kegiatan') || Request::is('admin/semua-data-todolist') || Request::is('admin/kegiatan/create') || Request::is('admin/opd') || Request::is('admin/pekerjaan') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                             data-bs-auto-close="false" role="button" aria-expanded="false">
@@ -176,7 +176,7 @@
                                 </a>
                             @endrole
                             @role('super-admin|admin')
-                                <a class="dropdown-item rounded-end-pill {{ Request::is('admin/rancangan') ? 'active' : '' }}"
+                                <a class="dropdown-item rounded-end-pill {{ Request::is('admin/semua-data-todolist') ? 'active' : '' }}"
                                     href="{{ route('semuadatatodolist') }}">
                                     Semua Data Todolist
                                 </a>
