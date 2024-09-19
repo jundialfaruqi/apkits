@@ -1,21 +1,20 @@
 <div class="row justify-content-center mb-3">
     <div class="col-md-4 mb-3">
-        <div class="card d-flex flex-column border-0 rounded-4 shadow-sm"
-            style="background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center; background-size: cover;">
+        <div class="card d-flex flex-column rounded-4 bg-transparent shadow-sm">
             <div class="row row-0 flex-fill">
                 <div class="col">
                     <div class="card-body">
-                        <h3 class="card-title mb-2"><a href="#">Selamat Datang</a></h3>
+                        <h2 class="mb-2"><a href="#">Selamat Datang</a></h2>
                         @role('super-admin')
-                            <small class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
-                                dan THL Pemerintah Kota Pekanbaru V.1.0</small>
+                            <p class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
+                                dan THL Pemerintah Kota Pekanbaru V.1.0</p>
                         @endrole
 
                         @role('it-support|admin|thl|staff|kabid|kadis')
-                            <small class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
-                                dan THL {{ Auth::user()->opd->name }} Kota Pekanbaru</small>
+                            <p class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
+                                dan THL {{ Auth::user()->opd->name }} Kota Pekanbaru</p>
                         @endrole
-                        <div class="d-flex align-items-center pt-2 mt-auto">
+                        <div class="d-flex align-items-center mt-auto">
                             <div>
                                 <a href="#"
                                     class="text-body me-1 btn btn-sm bg-azure-lt rounded-4 shadow-sm py-2 px-2 mb-1">Bantuan</a>
@@ -29,7 +28,7 @@
         </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 mb-3">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6">
