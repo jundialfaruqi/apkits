@@ -6,7 +6,7 @@
 
 <body>
     <script src="{{ asset('dist/js/demo-theme.min.js?1692870487') }}"></script>
-    <div class="page">
+    <div class="page" style="background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center; background-size: cover;">
 
         <!-- Sidebar -->
         @include('layouts.admin.sidebar')
