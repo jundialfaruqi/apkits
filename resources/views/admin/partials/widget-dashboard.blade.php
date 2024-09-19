@@ -1,6 +1,70 @@
 <div class="row justify-content-center mb-3">
     <div class="col-md-4 mb-3">
-        <div class="card d-flex flex-column rounded-4 bg-transparent shadow-sm">
+
+        <div class="card d-flex flex-column rounded-4 bg-transparent shadow-sm border-0">
+            <div class="row row-0 flex-fill">
+                <div class="col">
+                    <div class="card-body rounded-4"
+                        style="
+                        position: relative;
+                        background-image:
+                            url('{{ asset('static/regular-table-bottom.png') }}'),
+                            url('{{ asset('static/regular-table-top.png') }}');
+                        background-repeat: no-repeat, no-repeat;
+                        background-position: right bottom, left top;
+                        background-size: auto 50%, auto 50%;
+                        overflow: hidden;">
+                        <div
+                            style="
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-image: url('{{ asset('static/regular-table-bottom.png') }}');
+                            background-repeat: no-repeat;
+                            background-position: right bottom;
+                            background-size: contain;
+                            z-index: -1;
+                        ">
+                        </div>
+                        <div
+                            style="
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 70%;
+                            height: 70%;
+                            background-image: url('{{ asset('static/regular-table-top.png') }}');
+                            background-repeat: no-repeat;
+                            background-position: left top;
+                            background-size: contain;
+                            z-index: -1;
+                        ">
+                        </div>
+                        <h2 class="mb-2"><a href="#">Selamat Datang</a></h2>
+                        @role('super-admin')
+                            <p class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
+                                dan THL Pemerintah Kota Pekanbaru V.1.0</p>
+                        @endrole
+                        @role('it-support|admin|thl|staff|kabid|kadis')
+                            <p class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
+                                dan THL {{ Auth::user()->opd->name }} Kota Pekanbaru</p>
+                        @endrole
+                        <div class="d-flex align-items-center mt-auto">
+                            <div>
+                                <a href="#"
+                                    class="text-body me-1 btn btn-sm bg-azure-lt rounded-4 shadow-sm py-2 px-2 mb-1">Bantuan</a>
+                                <a href="#"
+                                    class="text-body btn btn-sm bg-gray-50 rounded-4 shadow-sm py-2 px-2 mb-1">Tentang</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div class="card d-flex flex-column rounded-4 bg-transparent shadow-sm">
             <div class="row row-0 flex-fill">
                 <div class="col">
                     <div class="card-body">
@@ -25,7 +89,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <div class="col-md-8 mb-3">
@@ -37,7 +101,7 @@
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <span
-                                        class="bg-primary text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                        class="bg-azure-lt text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
                                             height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                             fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -66,7 +130,7 @@
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <span
-                                        class="bg-azure text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                        class="bg-azure-lt text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
                                             height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                             fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -95,7 +159,7 @@
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <span
-                                        class="bg-purple text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                        class="bg-azure-lt text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -128,7 +192,7 @@
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <span
-                                        class="bg-teal text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                        class="bg-azure-lt text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -167,7 +231,7 @@
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                     <span
-                                        class="bg-indigo text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                        class="bg-azure-lt text-white avatar rounded-circle"><!-- Download SVG icon from http://tabler-icons.io/i/user -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
