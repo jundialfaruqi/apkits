@@ -28,6 +28,40 @@
         body {
             font-feature-settings: "cv03", "cv04", "cv11";
         }
+        #toast-container {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1050;
+        }
+        .toast {
+            max-width: 350px;
+            overflow: hidden;
+            font-size: 0.875rem;
+            background-color: rgba(255, 255, 255, 0.85);
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            border-radius: 0.25rem;
+            transform: translateY(-100%);
+            transition: all 0.25s ease-out;
+        }
+        .toast.showing {
+            opacity: 1;
+            transform: translateY(0%);
+        }
+        .toast.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0%);
+        }
+        .toast.hide {
+            display: none;
+            transform: translateY(-100%);
+        }
+
     </style>
 
     @stack('css')

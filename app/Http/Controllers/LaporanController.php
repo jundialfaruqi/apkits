@@ -190,6 +190,6 @@ class LaporanController extends Controller
         ));
 
         // Stream PDF ke browser
-        return $pdf->stream('laporan_pekerjaan.pdf');
+        return $pdf->stream('Laporan-Pekerjaan-' . $pekerjaan->nama_pekerjaan . '-Bulan-' . $bulan . '-Tahun-' . $tahun . '-' . $user->name . '.pdf');
     }
 }
