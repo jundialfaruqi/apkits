@@ -9,38 +9,6 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-xl-12">
                     <div class="card border-0 rounded-4 shadow-sm">
-                        @if (session('success'))
-                            <div id="autoCloseAlert"
-                                class="alert alert-important alert-dismissible rounded-top-4 rounded-bottom-0 mb-0"
-                                role="alert">
-                                <div class="d-flex">
-                                    <div>
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/info-circle -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="icon alert-icon">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M5 12l5 5l10 -10"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        {{ session('success') }}
-                                    </div>
-                                </div>
-                                <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-                            </div>
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    var alert = document.getElementById('autoCloseAlert');
-                                    if (alert) {
-                                        setTimeout(function() {
-                                            var bsAlert = new bootstrap.Alert(alert);
-                                            bsAlert.close();
-                                        }, 5000);
-                                    }
-                                });
-                            </script>
-                        @endif
                         <div class="card-header">
                             <div class="col-md-12">
                                 <div class="row">
@@ -155,8 +123,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="kesimpulan-table"
-                                    class="table table-striped table-hover table-vcenter table-sm">
+                                <table id="kesimpulan-table" class="table table-striped table-hover table-vcenter table-sm">
                                     <thead>
                                         <tr>
                                             <th class="col-1 text-center">No</th>
@@ -182,8 +149,8 @@
             <div class="modal-content rounded-4">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-body text-center py-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-danger icon-lg" width="24"
-                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-danger icon-lg" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M12 9v2m0 4v.01" />

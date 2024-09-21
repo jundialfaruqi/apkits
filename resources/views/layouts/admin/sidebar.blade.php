@@ -102,6 +102,25 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-chart-bar">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                                <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                                <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+                                <path d="M4 20h14" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Statistik
+                        </span>
+                    </a>
+                </li>
                 @role('super-admin|admin')
                     <li class="dropdown-header hr-text mb-1 mt-3">Admin </li>
                     <li
@@ -148,7 +167,7 @@
                 @endrole
 
                 @role('super-admin|admin')
-                    <li 
+                    <li
                         class="nav-item dropdown {{ Request::is('admin/kegiatan') || Request::is('admin/semua-data-todolist') || Request::is('admin/kegiatan/create') || Request::is('admin/opd') || Request::is('admin/pekerjaan') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                             data-bs-auto-close="false" role="button" aria-expanded="false">

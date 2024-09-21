@@ -1,47 +1,11 @@
 <div class="row justify-content-center mb-3">
     <div class="col-md-4 mb-3">
 
-        <div class="card d-flex flex-column rounded-4 bg-transparent shadow-sm border-0">
+        <div class="card d-flex flex-column rounded-4 bg-transparent shadow-sm no-repeat bg-cover"
+            style="background-image: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg)">
             <div class="row row-0 flex-fill">
                 <div class="col">
-                    <div class="card-body rounded-4"
-                        style="
-                        position: relative;
-                        background-image:
-                            url('{{ asset('static/regular-table-bottom.png') }}'),
-                            url('{{ asset('static/regular-table-top.png') }}');
-                        background-repeat: no-repeat, no-repeat;
-                        background-position: right bottom, left top;
-                        background-size: auto 50%, auto 50%;
-                        overflow: hidden;">
-                        <div
-                            style="
-                            position: absolute;
-                            bottom: 0;
-                            right: 0;
-                            width: 100%;
-                            height: 100%;
-                            background-image: url('{{ asset('static/regular-table-bottom.png') }}');
-                            background-repeat: no-repeat;
-                            background-position: right bottom;
-                            background-size: contain;
-                            z-index: -1;
-                        ">
-                        </div>
-                        <div
-                            style="
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 70%;
-                            height: 70%;
-                            background-image: url('{{ asset('static/regular-table-top.png') }}');
-                            background-repeat: no-repeat;
-                            background-position: left top;
-                            background-size: contain;
-                            z-index: -1;
-                        ">
-                        </div>
+                    <div class="card-body rounded-4">
                         <h2 class="mb-2"><a href="#">Selamat Datang</a></h2>
                         @role('super-admin')
                             <p class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support

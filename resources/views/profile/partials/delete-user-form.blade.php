@@ -1,6 +1,8 @@
-<button class="btn btn-danger mb-3 rounded-4" data-bs-toggle="modal" data-bs-target="#confirmUserDeletion">
-    Hapus Akun
-</button>
+<div class="col-md-12">
+    <button class="btn btn-danger rounded-4" data-bs-toggle="modal" data-bs-target="#confirmUserDeletion">
+        Hapus Akun
+    </button>
+</div>
 
 <div class="modal modal-blur fade" id="confirmUserDeletion" tabindex="-1" aria-labelledby="confirmUserDeletionLabel"
     aria-hidden="true">
