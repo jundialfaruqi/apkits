@@ -22,36 +22,18 @@
                             </a>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover table-vcenter table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">No</th>
-                                            <th>Nama Kegiatan</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($kegiatans as $kegiatan)
-                                            <tr>
-                                                <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td>{{ $kegiatan->nama_kegiatan }}</td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('kegiatan.edit', $kegiatan->id) }}"
-                                                        class="btn btn-sm my-1 rounded-pill px-2"> Edit </a>
-
-                                                    @can('delete kegiatan')
-                                                        <a href="{{ route('kegiatan.delete', $kegiatan->id) }}"
-                                                            class="btn btn-sm my-1 rounded-pill px-2"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?') ">
-                                                            Delete </a>
-                                                    @endcan
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table id="kegiatan-table" class="table table-striped table-hover table-vcenter table-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="col-1 text-center">No</th>
+                                        <th>Nama Kegiatan</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data akan diisi oleh DataTables melalui AJAX -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -59,3 +41,34 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#kegiatan-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('kegiatan.index') }}',
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false,
+                        className: 'text-center'
+                    },
+                    {
+                        data: 'nama_kegiatan',
+                        name: 'nama_kegiatan'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
+                        className: 'text-center'
+                    },
+                ]
+            });
+        });
+    </script>
+@endpush

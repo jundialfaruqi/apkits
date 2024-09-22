@@ -41,15 +41,28 @@ Route::get('admin/users/{usersId}/delete', [App\Http\Controllers\UserController:
     ->middleware(['auth', 'permission:delete user']);
 
 // 5. Kegiatan
-Route::group(['middleware' => ['auth', 'role:super-admin']], function () {
-    Route::resource('admin/kegiatan', App\Http\Controllers\Admin\KegiatanController::class);
-});
-Route::group(['middleware' => ['auth', 'role:super-admin']], function () {
-    Route::get('admin/kegiatan', [App\Http\Controllers\Admin\KegiatanController::class, 'index'])
-        ->name('kegiatan.index');
-});
+Route::get('admin/kegiatan', [App\Http\Controllers\Admin\KegiatanController::class, 'index'])
+    ->middleware(['auth', 'permission:view kegiatan'])
+    ->name('kegiatan.index');
+
+Route::get('admin/kegiatan/create', [App\Http\Controllers\Admin\KegiatanController::class, 'create'])
+    ->middleware(['auth', 'permission:add kegiatan'])
+    ->name('kegiatan.create');
+
+Route::post('admin/kegiatan/store', [App\Http\Controllers\Admin\KegiatanController::class, 'store'])
+    ->middleware(['auth', 'permission:add kegiatan'])
+    ->name('kegiatan.store');
+
+Route::get('admin/kegiatan/{kegiatanId}/edit', [App\Http\Controllers\Admin\KegiatanController::class, 'edit'])
+    ->middleware(['auth', 'permission:edit kegiatan'])
+    ->name('kegiatan.edit');
+
+Route::put('admin/kegiatan/{kegiatanId}/update', [App\Http\Controllers\Admin\KegiatanController::class, 'update'])
+    ->middleware(['auth', 'permission:edit kegiatan'])
+    ->name('kegiatan.update');
+
 Route::get('admin/kegiatan/{kegiatanId}/delete', [App\Http\Controllers\Admin\KegiatanController::class, 'destroy'])
-    ->middleware(['auth', 'role:super-admin'])
+    ->middleware(['auth', 'permission:delete kegiatan'])
     ->name('kegiatan.delete');
 
 // 6. Semua Data Todolist
@@ -172,5 +185,10 @@ Route::group(['middleware' => ['auth', 'role:super-admin']], function () {
 
 // 12. Landing Pages Blog
 Route::get('/', [HomePageController::class, 'index'])->name('apkits');
+
+//13. Statistik
+Route::get('/admin/statistik', [App\Http\Controllers\Admin\StatistikController::class, 'index'])
+    ->middleware(['auth', 'permission:view statistik'])
+    ->name('statistik.index');
 
 require __DIR__ . '/auth.php';
