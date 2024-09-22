@@ -61,7 +61,7 @@ Route::put('admin/kegiatan/{kegiatanId}/update', [App\Http\Controllers\Admin\Keg
     ->middleware(['auth', 'permission:edit kegiatan'])
     ->name('kegiatan.update');
 
-Route::get('admin/kegiatan/{kegiatanId}/delete', [App\Http\Controllers\Admin\KegiatanController::class, 'destroy'])
+Route::delete('admin/kegiatan/{kegiatanId}/delete', [App\Http\Controllers\Admin\KegiatanController::class, 'destroy'])
     ->middleware(['auth', 'permission:delete kegiatan'])
     ->name('kegiatan.delete');
 
