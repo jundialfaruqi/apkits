@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="roles-table" class="table table-hover table-vcenter table-sm">
+                                <table id="roles-table" class="table table-hover table-striped table-vcenter table-sm">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -63,7 +63,13 @@
                         name: 'action',
                         orderable: false,
                         searchable: false,
-                        className: 'text-center'
+                        className: 'text-end'
+                    }
+                ],
+                columnDefs: [
+                    {
+                        targets: 0,  // Kolom pertama (indeks)
+                        width: '50px'
                     }
                 ]
             });
