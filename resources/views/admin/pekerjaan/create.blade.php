@@ -15,7 +15,7 @@
                             <div class="card-body p-4">
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-5">
                                             <label for="nama_pekerjaan" class="form-label">Nama Pekerjaan</label>
                                             <input type="text" name="nama_pekerjaan" id="nama_pekerjaan"
                                                 class="form-control rounded-4 @error('nama_pekerjaan') is-invalid @enderror"

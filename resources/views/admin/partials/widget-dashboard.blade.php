@@ -1,4 +1,4 @@
-<div class="row justify-content-center mb-3">
+<div class="row justify-content-center">
     <div class="col-md-4 mb-3">
 
         <div class="card d-flex flex-column rounded-4 bg-transparent shadow-sm no-repeat bg-cover"

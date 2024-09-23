@@ -19,11 +19,11 @@
                                     <div class="col-md-5">
                                         <div class="mb-2">
                                             <label for="name" class="form-label">Nama Pekerjaan</label>
-                                            <input type="text" name="name" id="name"
-                                                class="form-control rounded-4 @error('name') is-invalid @enderror"
-                                                value="{{ $pekerjaan->name }}">
+                                            <input type="text" name="nama_pekerjaan" id="nama_pekerjaan"
+                                                class="form-control rounded-4 @error('nama_pekerjaan') is-invalid @enderror"
+                                                value="{{ $pekerjaan->nama_pekerjaan }}">
 
-                                            @error('name')
+                                            @error('nama_pekerjaan')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
