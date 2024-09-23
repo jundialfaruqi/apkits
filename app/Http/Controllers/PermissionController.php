@@ -3,35 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
+use App\Services\PermissionService;
 use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
+    protected $permissionService;
+
+    public function __construct(PermissionService $permissionService)
+    {
+        $this->permissionService = $permissionService;
+    }
     public function index()
     {
         $title = "Data Permission";
 
         if (request()->ajax()) {
-            $permissions = DB::table('permissions')->select('id', 'name');
-            return DataTables::of($permissions)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $editUrl = url('admin/permissions/' . $row->id . '/edit');
-                    $deleteUrl = url('admin/permissions/' . $row->id);
-
-                    return '
-                        <a href="' . $editUrl . '" class="btn btn-sm rounded-pill my-1 px-2">Edit</a>
-                        <form action="' . $deleteUrl . '" method="POST" style="display:inline;">
-                            ' . csrf_field() . '
-                            ' . method_field('DELETE') . '
-                            <button type="submit" class="btn btn-sm rounded-pill my-1 px-2" onclick="return confirm(\'Apakah Anda yakin ingin menghapus data ini?\')">Delete</button>
-                        </form>
-                    ';
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+            return $this->permissionService->getDatatables();
         }
 
         return view('role-permission.permission.index', compact('title'));

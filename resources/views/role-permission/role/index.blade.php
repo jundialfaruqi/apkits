@@ -28,6 +28,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Name</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -63,15 +64,13 @@
                         name: 'action',
                         orderable: false,
                         searchable: false,
-                        className: 'text-end'
+                        className: 'text-center'
                     }
                 ],
-                columnDefs: [
-                    {
-                        targets: 0,  // Kolom pertama (indeks)
-                        width: '50px'
-                    }
-                ]
+                columnDefs: [{
+                    targets: 0, // Kolom pertama (indeks)
+                    width: '50px'
+                }]
             });
         });
     </script>
