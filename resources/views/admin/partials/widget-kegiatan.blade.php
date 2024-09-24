@@ -32,34 +32,18 @@
             @foreach ($rancangans as $rancangan)
                 <div class="col-xl-6">
                     <div class="col-md-12">
-                        {{-- <small class="text-secondary d-inline-flex align-items-center px-3 py-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                                <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
-                            </svg>
-                            <span class="ms-1">{{ $rancangan->user->name }}</span>
-                        </small> --}}
-
                         <div class="card mb-3 border-0 rounded-4 shadow-sm">
                             <div class="card-body">
 
                                 <div class="col-md-12">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
-                                            <span class="avatar rounded-circle">
+                                            <span class="avatar rounded-circle" style="background-image">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                                    <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                                                    <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
+                                                fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-user">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                                                <path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" />
                                                 </svg>
                                             </span>
                                         </div>
@@ -75,7 +59,8 @@
                                                 </div>
                                                 <small class="text-secondary">
                                                     <span>
-                                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                                        </svg>
                                                     </span>
                                                 </small>
                                             </div>
@@ -107,9 +92,9 @@
                                                     {{ Str::limit($rancangan->pelaksanaan_kerja, 110, '...') }}
                                                 </p>
                                             </small>
-                                            <small class="text-secondary d-flex flex-wrap justify-content-md-start">
-                                                <span class="d-inline-flex align-items-center">
-                                                    • {{ $rancangan->tempat }}
+                                            <small class="d-flex">
+                                                <span class="d-inline-flex badge bg-azure text-white">
+                                                    {{ $rancangan->tempat }}
                                                 </span>
                                             </small>
                                         </div>
