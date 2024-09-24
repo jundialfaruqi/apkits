@@ -96,7 +96,8 @@ class DashboardController extends Controller
 
         // Query data even if the user doesn't have the permission
         $query = Rancangan::with(['user:id,name,opd_id', 'user.opd:id,name'])
-            ->whereDate('tanggal', Carbon::today())
+            // ->whereDate('tanggal', Carbon::today())
+            ->whereMonth('tanggal', $mounth)
             ->select('id', 'user_id', 'jenis_kegiatan', 'tempat', 'pelaksanaan_kerja', 'foto', 'created_at')
             ->orderBy('created_at', 'desc');
 
