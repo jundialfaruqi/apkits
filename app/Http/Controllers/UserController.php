@@ -7,65 +7,28 @@ use App\Models\User;
 use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
 use App\Models\Formatlaporan;
-use Yajra\DataTables\DataTables;
+use App\Services\UserService;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function index()
     {
         $title = "Data User";
-        $isSuperAdmin = auth()->user()->hasRole('super-admin');
-        $isAdmin = auth()->user()->hasRole('admin');
-
-        $usersQuery = User::with(['roles', 'opd', 'formatlaporan.pekerjaanRelasi']);
-
-        if ($isAdmin) {
-            $adminOpdId = auth()->user()->opd_id;
-            $usersQuery->where('opd_id', $adminOpdId);
-        }
-
-        $users = $usersQuery->get();
+        $isSuperAdmin = Auth::user()->hasRole('super-admin');
+        $users = $this->userService->getUsersQuery();
 
         if (request()->ajax()) {
-            return DataTables::of($users)
-                ->addIndexColumn()
-                ->addColumn('opd', function ($user) {
-                    return $user->opd ? $user->opd->name : 'N/A';
-                })
-                ->addColumn('bidang', function ($user) {
-                    return $user->formatlaporan ? $user->formatlaporan->bidang : 'N/A';
-                })
-                ->addColumn('nama_pekerjaan', function ($user) {
-                    if ($user->formatlaporan && $user->formatlaporan->pekerjaanRelasi) {
-                        return $user->formatlaporan->pekerjaanRelasi->nama_pekerjaan ?? 'N/A';
-                    }
-                    return 'N/A';
-                })
-                ->addColumn('roles', function ($user) {
-                    return $user->getRoleNames()->map(function ($role) {
-                        return '<label class="badge bg-primary text-white my-1 mx-1">' . $role . '</label>';
-                    })->implode(' ');
-                })
-                ->addColumn('action', function ($user) use ($isSuperAdmin, $isAdmin) {
-                    $editUrl = url('admin/users/' . $user->id . '/edit');
-                    $deleteUrl = url('admin/users/' . $user->id);
-                    $actions = '';
-                    if ($isSuperAdmin || $isAdmin) {
-                        $actions .= '<a href="' . $editUrl . '" class="btn btn-sm rounded-pill mx-1 my-1 px-2">Edit</a>';
-                    }
-                    if ($isSuperAdmin) {
-                        $actions .= '<form action="' . $deleteUrl . '" method="POST" style="display:inline;">'
-                            . csrf_field()
-                            . method_field('DELETE')
-                            . '<button type="submit" class="btn btn-sm rounded-pill my-1 px-2" onclick="return confirm(\'Apakah Anda yakin ingin menghapus data ini?\')">Delete</button>'
-                            . '</form>';
-                    }
-                    return $actions;
-                })
-                ->rawColumns(['roles', 'action'])
-                ->make(true);
+            return $this->userService->getDatatables($users);
         }
 
         return view('role-permission.user.index', compact('title', 'users', 'isSuperAdmin'));

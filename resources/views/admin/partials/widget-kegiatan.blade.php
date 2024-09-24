@@ -32,7 +32,7 @@
             @foreach ($rancangans as $rancangan)
                 <div class="col-xl-6">
                     <div class="col-md-12">
-                        <small class="text-secondary d-inline-flex align-items-center px-3 py-2">
+                        {{-- <small class="text-secondary d-inline-flex align-items-center px-3 py-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -43,10 +43,48 @@
                                 <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
                             </svg>
                             <span class="ms-1">{{ $rancangan->user->name }}</span>
-                        </small>
+                        </small> --}}
 
                         <div class="card mb-3 border-0 rounded-4 shadow-sm">
                             <div class="card-body">
+
+                                <div class="col-md-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span class="avatar rounded-circle">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                                    <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                                    <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="col">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex flex-column">
+                                                    <small>
+                                                        <span class="strong">{{ $rancangan->user->name }}</span>
+                                                    </small>
+                                                    <small class="text-secondary">
+                                                        <span>{{ $rancangan->created_at->diffForHumans() }}</span>
+                                                    </small>
+                                                </div>
+                                                <small class="text-secondary">
+                                                    <span>
+                                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                                                    </span>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="hr mb-3 mt-3"></div>
                                 <div class="row row-0 align-items-center">
                                     <div class="col order-last align-self-center">
                                         @if ($rancangan->foto && file_exists(public_path('assets/images/' . $rancangan->foto)))
@@ -71,8 +109,7 @@
                                             </small>
                                             <small class="text-secondary d-flex flex-wrap justify-content-md-start">
                                                 <span class="d-inline-flex align-items-center">
-                                                    {{ $rancangan->created_at->diffForHumans() }} -
-                                                    {{ $rancangan->tempat }}
+                                                    • {{ $rancangan->tempat }}
                                                 </span>
                                             </small>
                                         </div>
