@@ -36,11 +36,10 @@
     <div class="col-md-12">
         <div class="row">
             @foreach ($rancangans as $rancangan)
-                <div class="col-xl-6">
+                <div class="col-xl-6 mb-3">
                     <div class="col-md-12">
-                        <div class="card mb-3 border-0 rounded-4 shadow-sm">
+                        <div class="card border-0 rounded-4 shadow-sm">
                             <div class="card-body">
-
                                 <div class="col-md-12">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
@@ -87,34 +86,6 @@
 
                                 <div class="hr mb-3 mt-3"></div>
                                 <div class="row row-0 align-items-center">
-                                    {{-- <div class="col order-last align-self-center">
-                                        @if ($rancangan->foto && file_exists(public_path('assets/images/' . $rancangan->foto)))
-                                            <img src="{{ asset('assets/images/' . $rancangan->foto) }}"
-                                                class="rounded-4 float-end"
-                                                style="width: 100px; height: 100px; object-fit: cover;"
-                                                alt="{{ $rancangan->jenis_kegiatan }}">
-                                        @else
-                                            <img src="{{ asset('assets/images/placeholder.jpg') }}"
-                                                class="rounded-3 float-end"
-                                                style="width: 100px; height: 100px; object-fit: cover;"
-                                                alt="Placeholder Image">
-                                        @endif
-                                    </div>
-                                    <div class="col-8 col-md-10 col-xl-9 col-lg-10">
-                                        <div class="text-md-start">
-                                            <h3 class="lh-sm mb-2">{{ $rancangan->jenis_kegiatan }}</h3>
-                                            <small>
-                                                <p class="mb-2 d-none d-sm-block">
-                                                    {{ Str::limit($rancangan->pelaksanaan_kerja, 110, '...') }}
-                                                </p>
-                                            </small>
-                                            <small class="d-flex">
-                                                <span class="d-inline-flex badge bg-azure text-white">
-                                                    {{ $rancangan->tempat }}
-                                                </span>
-                                            </small>
-                                        </div>
-                                    </div> --}}
                                     @if ($rancangan->foto && file_exists(public_path('assets/images/' . $rancangan->foto)))
                                         <div class="col order-last align-self-center">
                                             <img src="{{ asset('assets/images/' . $rancangan->foto) }}"
