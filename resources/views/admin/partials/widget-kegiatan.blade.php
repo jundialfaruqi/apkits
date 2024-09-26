@@ -4,7 +4,7 @@
 </div>
 --}}
 
-<div class="text-muted mb-2 hr-text">
+<div class="text-muted mb-5 hr-text">
     Kegiatan {{ \Carbon\Carbon::today()->translatedFormat('F Y', 'id_ID') }}
 </div>
 
@@ -162,7 +162,6 @@
             @endforeach
         </div>
     </div>
-
     <!-- Pagination Links -->
 
     <div class="d-flex justify-content-center">
