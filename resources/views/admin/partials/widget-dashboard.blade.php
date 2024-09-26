@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="col-md-8 mb-3">
+    <div class="col-md-8 d-none d-md-block">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6">
@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card card-sm mb-3 border-0 rounded-4 shadow-sm">
+                    <div class="card card-sm border-0 rounded-4 shadow-sm">
                         <div class="card-body">
                             <div class="row align-items-center">
                                 <div class="col-auto">
