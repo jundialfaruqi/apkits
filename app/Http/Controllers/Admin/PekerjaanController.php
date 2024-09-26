@@ -4,35 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Services\PekerjaanService;
 
 class PekerjaanController extends Controller
 {
+
+    protected $pekerjaanService;
+
+    public function __construct(PekerjaanService $pekerjaanService)
+    {
+        $this->pekerjaanService = $pekerjaanService;
+    }
+
     public function index()
     {
-        $title = 'Data Pekerjaan';
+        $title = "Data Pekerjaan";
 
         if (request()->ajax()) {
-            $pekerjaan = DB::table('pekerjaans')->select('id', 'nama_pekerjaan');
-            return DataTables::of($pekerjaan)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $editUrl = url('admin/pekerjaan/' . $row->id . '/edit');
-                    $deleteUrl = url('admin/pekerjaan/' . $row->id . '/delete');
-
-                    return '
-                        <a href="' . $editUrl . '" class="btn btn-sm rounded-pill my-1 px-2">Edit</a>
-                        <form action="' . $deleteUrl . '" method="POST" style="display:inline;">
-                            ' . csrf_field() . '
-                            ' . method_field('DELETE') . '
-                            <button type="submit" class="btn btn-sm rounded-pill px-2" onclick="return confirm(\'Apakah Anda yakin ingin menghapus data ini?\')">Delete</button>
-                        </form>
-                    ';
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+            return $this->pekerjaanService->getDatatables();
         }
 
         return view('admin.pekerjaan.index', compact('title'));

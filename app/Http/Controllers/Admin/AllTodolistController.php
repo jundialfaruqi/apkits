@@ -7,73 +7,30 @@ use App\Models\User;
 use App\Models\Rancangan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Services\RancanganService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Laravel\Facades\Image;
 
 class AllTodolistController extends Controller
 {
+    protected $rancanganService;
+
+    public function __construct(RancanganService $rancanganService)
+    {
+        $this->rancanganService = $rancanganService;
+    }
+
     public function index()
     {
         $title = "Semua Data Todolist";
         $user = auth()->user();
         $isSuperAdmin = $user->hasRole('super-admin');
         $isAdmin = $user->hasRole('admin');
-
-        // Fetch all OPDs for the filter
         $opds = Opd::all();
 
         if (request()->ajax()) {
-            $rancangans = Rancangan::with(['user.roles', 'kegiatan', 'user.opd'])
-                ->select('rancangans.*');
-
-            // Apply OPD filter if selected
-            if (request()->has('opd_id') && request('opd_id') != '') {
-                $rancangans->whereHas('user', function ($query) {
-                    $query->where('opd_id', request('opd_id'));
-                });
-            } elseif ($isAdmin) {
-                // If admin, show only their OPD's data
-                $rancangans->whereHas('user', function ($query) use ($user) {
-                    $query->where('opd_id', $user->opd_id);
-                });
-            }
-            // Note: For super-admin, we don't apply any additional filter
-
-            $rancangans->orderBy('rancangans.created_at', 'desc');
-
-            return DataTables::of($rancangans)
-                ->addIndexColumn()
-                ->addColumn('user_name', function ($rancangan) {
-                    return $rancangan->user->name;
-                })
-                ->addColumn('kegiatan_nama', function ($rancangan) {
-                    return $rancangan->kegiatan->nama_kegiatan;
-                })
-                ->addColumn('user_roles', function ($rancangan) {
-                    return $rancangan->user->roles->pluck('name')->map(function ($role) {
-                        return '<label class="badge bg-primary text-white my-1 mx-1">' . $role . '</label>';
-                    })->implode(' ');
-                })
-                ->addColumn('action', function ($rancangan) use ($isSuperAdmin) {
-                    if (!$isSuperAdmin) return ''; // Return empty string if not super-admin
-
-                    $editUrl = route('todolist.edit', $rancangan->id);
-                    $deleteUrl = route('todolist.delete', $rancangan->id);
-                    $actions = '';
-                    $actions .= '<a href="' . $editUrl . '" class="btn btn-sm rounded-pill mx-1 my-1 px-2">Edit</a>';
-                    $actions .= '<form action="' . $deleteUrl . '" method="POST" style="display:inline;">'
-                        . csrf_field()
-                        . method_field('DELETE')
-                        . '<button type="submit" class="btn btn-sm rounded-pill my-1 px-2" onclick="return confirm(\'Apakah Anda yakin ingin menghapus data ini?\')">Hapus</button>'
-                        . '</form>';
-                    return $actions;
-                })
-                ->editColumn('progress', function ($rancangan) {
-                    return $rancangan->progress . '%';
-                })
-                ->rawColumns(['user_roles', 'action'])
-                ->make(true);
+            return $this->rancanganService->getDatatables($user, $isSuperAdmin, $isAdmin);
         }
 
         return view('admin/rancangan/index', compact('title', 'isSuperAdmin', 'isAdmin', 'opds'));

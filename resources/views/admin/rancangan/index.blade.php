@@ -30,10 +30,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>User</th>
-                                            <th>Role</th>
+                                            <th>Nama</th>
                                             <th>Kegiatan</th>
-                                            <th>Jenis Kegiatan</th>
+                                            <th>Kegiatan</th>
                                             <th>Tanggal</th>
                                             <th>Tempat</th>
                                             <th>Progress</th>
@@ -68,10 +67,6 @@
                 {
                     data: 'user_name',
                     name: 'user.name'
-                },
-                {
-                    data: 'user_roles',
-                    name: 'user.roles.name'
                 },
                 {
                     data: 'kegiatan_nama',
