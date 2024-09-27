@@ -4,13 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Kesimpulan;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\Auth;
+use App\Services\KesimpulanService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 class KesimpulanController extends Controller
 {
+    protected $kesimpulanService;
+
+    public function __construct(KesimpulanService $kesimpulanService)
+    {
+        $this->kesimpulanService = $kesimpulanService;
+    }
+
     public function index()
     {
         $title = 'Kesimpulan';
@@ -24,49 +31,7 @@ class KesimpulanController extends Controller
         }
 
         if (request()->ajax()) {
-            $kesimpulans = Kesimpulan::with('user')->select('kesimpulans.*');
-
-            if ($canViewAll || $isSuperAdmin) {
-                // User can view all data
-            } elseif ($canView) {
-                // User can only view their own data
-                $kesimpulans->where('user_id', $user->id);
-            }
-
-            // Filter berdasarkan bulan dan tahun
-            if (request()->has('bulan') && request()->has('tahun')) {
-                $kesimpulans->whereMonth('tanggal', request('bulan'))
-                    ->whereYear('tanggal', request('tahun'));
-            }
-
-            $kesimpulans->orderBy('created_at', 'desc');
-
-            return DataTables::of($kesimpulans)
-                ->addIndexColumn()
-                ->addColumn('user_name', function ($kesimpulan) {
-                    return $kesimpulan->user->name;
-                })
-                ->addColumn('action', function ($kesimpulan) use ($user, $isSuperAdmin) {
-                    $editUrl = route('kesimpulan.edit', $kesimpulan->id);
-                    $deleteUrl = route('kesimpulan.delete', $kesimpulan->id);
-                    $actions = '';
-
-                    if ($isSuperAdmin || $user->hasPermissionTo('edit kesimpulan')) {
-                        $actions .= '<a href="' . $editUrl . '" class="btn btn-sm rounded-pill mx-1 my-1 px-2">Edit</a>';
-                    }
-
-                    if ($isSuperAdmin || $user->hasPermissionTo('delete kesimpulan')) {
-                        $actions .= '<form action="' . $deleteUrl . '" method="POST" style="display:inline;">'
-                            . csrf_field()
-                            . method_field('DELETE')
-                            . '<button type="submit" class="btn btn-sm rounded-pill my-1 px-2" onclick="return confirm(\'Apakah Anda yakin ingin menghapus data ini?\')">Hapus</button>'
-                            . '</form>';
-                    }
-
-                    return $actions;
-                })
-                ->rawColumns(['user_name', 'action'])
-                ->make(true);
+            return $this->kesimpulanService->getDatatables($user, $canViewAll, $canView, $isSuperAdmin);
         }
 
         return view('admin.kesimpulan.index', compact('title'));

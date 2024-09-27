@@ -1,5 +1,5 @@
 <a href="{{ url('admin/kegiatan/' . $row->id . '/edit') }}" class="btn btn-sm rounded-pill my-1 px-2">Edit</a>
-<form action="{{ url('admin/kegiatan/' . $row->id) }}" method="POST" style="display:inline;">
+<form action="{{ url('admin/kegiatan/' . $row->id . '/delete') }}" method="POST" style="display:inline;">
     @csrf
     @method('DELETE')
     <button type="submit" class="btn btn-sm rounded-pill px-2" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
