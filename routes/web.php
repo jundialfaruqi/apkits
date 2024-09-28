@@ -15,6 +15,11 @@ Route::get('dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+// Todolist show on dashboard
+Route::get('todolist/show/{todolistId}', [DashboardController::class, 'show'])
+    ->name('todolist.show')
+    ->middleware('auth', 'permission:show todolist');
+
 Route::group(['middleware' => ['auth', 'role:super-admin']], function () {
 
     // 2. Roles
@@ -183,7 +188,7 @@ Route::group(['middleware' => ['auth', 'role:super-admin']], function () {
         ->name('pekerjaan.delete');
 });
 
-// 12. Landing Pages Blog
+// 12. APKITS
 Route::get('/', [HomePageController::class, 'index'])->name('apkits');
 
 //13. Statistik

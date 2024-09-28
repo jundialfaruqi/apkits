@@ -112,4 +112,10 @@ class DashboardController extends Controller
         // Pass the permission check result to the view
         return view('admin.dashboard', compact('title', 'rancangans', 'hasPermission', 'thlCount', 'thlUsers', 'itCount', 'totalRancangans', 'totalRancangansToday', 'totalRancangansMounth'));
     }
+
+    public function show($id)
+    {
+        $rancangan = Rancangan::findOrFail($id);
+        return response()->json($rancangan);
+    }
 }
