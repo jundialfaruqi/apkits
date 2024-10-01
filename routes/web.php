@@ -5,6 +5,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TodolistController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StatistikController;
 use App\Http\Controllers\Admin\KesimpulanController;
 use App\Http\Controllers\Admin\AllTodolistController;
 use App\Http\Controllers\HomePage\HomePageController;
@@ -192,8 +193,13 @@ Route::group(['middleware' => ['auth', 'role:super-admin']], function () {
 Route::get('/', [HomePageController::class, 'index'])->name('apkits');
 
 //13. Statistik
-Route::get('/admin/statistik', [App\Http\Controllers\Admin\StatistikController::class, 'index'])
-    ->middleware(['auth', 'permission:view statistik'])
-    ->name('statistik.index');
+Route::group(['middleware' => ['auth', 'permission:view statistik']], function () {
+    Route::get('/admin/statistik', [App\Http\Controllers\Admin\StatistikController::class, 'index'])
+        ->name('statistik.index');
+    Route::get('/statistik/it-support-data', [StatistikController::class, 'getItSupportData'])
+        ->name('statistik.it-support-data');
+    Route::get('/statistik/thl-data', [StatistikController::class, 'getThlData'])
+        ->name('statistik.thl-data');
+});
 
 require __DIR__ . '/auth.php';

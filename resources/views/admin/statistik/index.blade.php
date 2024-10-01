@@ -13,20 +13,20 @@
                             <div class="card rounded-4 shadow-sm">
                                 <div class="card-body" id="itSupportChart"></div>
                                 @include('admin.partials.statistik-table', [
-                                    'staffData' => $itSupportData,
+                                    'tableId' => 'it-support-table',
+                                    'dataUrl' => route('statistik.it-support-data'),
                                     'title' => 'IT Support',
                                 ])
-                                <div class="card-footer rounded-bottom-4"></div>
                             </div>
                         </div>
                         <div class="col-md-12 mb-3">
                             <div class="card rounded-4 shadow-sm">
                                 <div class="card-body" id="thlChart"></div>
                                 @include('admin.partials.statistik-table', [
-                                    'staffData' => $thlData,
+                                    'tableId' => 'thl-table',
+                                    'dataUrl' => route('statistik.thl-data'),
                                     'title' => 'THL',
                                 ])
-                                <div class="card-footer rounded-bottom-4"></div>
                             </div>
                         </div>
                     </div>
@@ -76,21 +76,23 @@
                     opacity: 1
                 },
                 tooltip: {
+                    theme: 'dark',
                     y: {
                         formatter: function(val) {
                             return val + " kegiatan"
                         }
                     }
                 },
-                tooltip: {
-                    theme: 'dark'
-                },
                 grid: {
                     strokeDashArray: 4
                 },
                 title: {
                     text: 'IT Support ' + lastYear + ' & ' + currentYear,
-                    align: 'center'
+                    align: 'center',
+                    style: {
+                        fontSize: '16px',
+                        fontWeight: 600
+                    }
                 },
                 legend: {
                     position: 'top'
@@ -129,21 +131,15 @@
                     opacity: 1
                 },
                 tooltip: {
+                    theme: 'dark',
                     y: {
                         formatter: function(val) {
                             return val + " kegiatan"
                         }
                     }
                 },
-                tooltip: {
-                    theme: 'dark'
-                },
                 grid: {
                     strokeDashArray: 4
-                },
-                title: {
-                    text: 'IT Support ' + lastYear + ' & ' + currentYear,
-                    align: 'center',
                 },
                 legend: {
                     position: 'top'
@@ -154,7 +150,11 @@
                 },
                 title: {
                     text: 'THL ' + lastYear + ' & ' + currentYear,
-                    align: 'center'
+                    align: 'center',
+                    style: {
+                        fontSize: '16px',
+                        fontWeight: 600
+                    }
                 }
             };
 

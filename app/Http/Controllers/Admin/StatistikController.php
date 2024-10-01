@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Opd;
 use App\Models\User;
 use App\Models\Rancangan;
+use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,19 +21,18 @@ class StatistikController extends Controller
         $currentMonth = Carbon::now()->month;
         $lastMonth = Carbon::now()->subMonth()->month;
 
+        $itSupportData = collect();
+        $thlData = collect();
+
         if ($user->hasRole('super-admin')) {
             $opds = Opd::all();
         } else {
             $opds = collect([$user->opd]);
         }
 
-        $itSupportData = collect();
-        $thlData = collect();
-
         foreach ($opds as $opd) {
             $itSupportUsers = $this->getUsersByJobAndOpd('IT Support', $opd->id);
             $thlUsers = $this->getUsersByJobAndOpd('THL', $opd->id);
-
             $itSupportData = $itSupportData->concat($this->processUserData($itSupportUsers, $currentYear, $lastYear, $currentMonth, $lastMonth));
             $thlData = $thlData->concat($this->processUserData($thlUsers, $currentYear, $lastYear, $currentMonth, $lastMonth));
         }
@@ -40,7 +40,57 @@ class StatistikController extends Controller
         $itSupportChartData = $this->prepareChartData($itSupportData);
         $thlChartData = $this->prepareChartData($thlData);
 
-        return view('admin.statistik.index', compact('title', 'itSupportData', 'thlData', 'itSupportChartData', 'thlChartData', 'currentYear', 'lastYear'));
+        return view('admin.statistik.index', compact('title', 'itSupportChartData', 'thlChartData', 'currentYear', 'lastYear'));
+    }
+
+    public function getItSupportData()
+    {
+        $user = Auth::user();
+        $currentYear = Carbon::now()->year;
+        $lastYear = $currentYear - 1;
+        $currentMonth = Carbon::now()->month;
+        $lastMonth = Carbon::now()->subMonth()->month;
+
+        if ($user->hasRole('super-admin')) {
+            $opds = Opd::all();
+        } else {
+            $opds = collect([$user->opd]);
+        }
+
+        $itSupportData = collect();
+        foreach ($opds as $opd) {
+            $itSupportUsers = $this->getUsersByJobAndOpd('IT Support', $opd->id);
+            $itSupportData = $itSupportData->concat($this->processUserData($itSupportUsers, $currentYear, $lastYear, $currentMonth, $lastMonth));
+        }
+
+        return DataTables::of($itSupportData)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function getThlData()
+    {
+        $user = Auth::user();
+        $currentYear = Carbon::now()->year;
+        $lastYear = $currentYear - 1;
+        $currentMonth = Carbon::now()->month;
+        $lastMonth = Carbon::now()->subMonth()->month;
+
+        if ($user->hasRole('super-admin')) {
+            $opds = Opd::all();
+        } else {
+            $opds = collect([$user->opd]);
+        }
+
+        $thlData = collect();
+        foreach ($opds as $opd) {
+            $thlUsers = $this->getUsersByJobAndOpd('THL', $opd->id);
+            $thlData = $thlData->concat($this->processUserData($thlUsers, $currentYear, $lastYear, $currentMonth, $lastMonth));
+        }
+
+        return DataTables::of($thlData)
+            ->addIndexColumn()
+            ->make(true);
     }
 
     private function getUsersByJobAndOpd($jobName, $opdId)
