@@ -13,7 +13,7 @@
                         {{-- <div class="card-body"> --}}
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="card rounded-4 mb-3 bg-transparent">
+                                <div class="card rounded-4 border-0 mb-3 bg-transparent">
                                     <div class="card-body text-center">
                                         <span class="avatar avatar-xl rounded-circle mb-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
