@@ -22,6 +22,7 @@ class DashboardController extends Controller
         $user = Auth::user();
         $today = Carbon::today();
         $mounth = Carbon::now()->format('m');
+        $year = Carbon::now()->format('Y');
 
         // Check if the user has permission to view the dashboard
         $hasPermission = $user->hasPermissionTo('view dashboard');
@@ -47,7 +48,9 @@ class DashboardController extends Controller
             $totalRancangansToday = Rancangan::whereDate('tanggal', $today)->count();
 
             // Hitung total rancangans untuk semua user, hanya untuk bulan ini
-            $totalRancangansMounth = Rancangan::whereMonth('tanggal', $mounth)->count();
+            $totalRancangansMounth = Rancangan::whereMonth('tanggal', Carbon::now()->format('m'))
+                ->whereYear('tanggal', Carbon::now()->format('Y'))
+                ->count();
 
             // Hitung total rancangans
             $totalRancangans = Rancangan::count();
@@ -85,7 +88,8 @@ class DashboardController extends Controller
             $totalRancangansMounth = Rancangan::whereHas('user', function ($query) use ($user) {
                 $query->where('opd_id', $user->opd_id);
             })
-                ->whereMonth('tanggal', $mounth)
+                ->whereMonth('tanggal', Carbon::now()->format('m'))
+                ->whereYear('tanggal', Carbon::now()->format('Y'))
                 ->count();
 
             // Hitung total rancangans untuk semua user di OPD yang sama
@@ -97,9 +101,10 @@ class DashboardController extends Controller
         // Query data even if the user doesn't have the permission
         $query = Rancangan::with(['user:id,name,opd_id', 'user.opd:id,name'])
             // ->whereDate('tanggal', Carbon::today())
-            ->whereMonth('tanggal', $mounth)
+            ->whereMonth('tanggal', Carbon::now()->format('m'))
+            ->whereYear('tanggal', Carbon::now()->format('Y'))
             ->select('id', 'user_id', 'jenis_kegiatan', 'tempat', 'pelaksanaan_kerja', 'foto', 'created_at')
-            ->orderBy('created_at', 'desc');
+            ->orderBy('tanggal', 'desc');
 
         if ($user->hasRole('super-admin')) {
             $rancangans = $query->paginate(10);

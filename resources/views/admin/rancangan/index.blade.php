@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-xl-12">
-                    <div class="card border-0 rounded-4 shadow-sm">
+                    <div class="card rounded-4 shadow-sm">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div class="card-title">
                                 Data Seluruh Todolist
@@ -24,26 +24,24 @@
                                 </div>
                             @endrole
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="rancangans-table" class="table table-striped table-hover table-vcenter table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Kegiatan</th>
-                                            <th>Kegiatan</th>
-                                            <th>Tanggal</th>
-                                            <th>Tempat</th>
-                                            <th>Progress</th>
+                        <div class="table-responsive">
+                            <table id="rancangans-table" class="table table-striped table-hover table-vcenter table-sm border-top">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Kegiatan</th>
+                                        <th>Kegiatan</th>
+                                        <th>Tanggal</th>
+                                        <th>Tempat</th>
+                                        <th>Progress</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {{-- data rancangan --}}
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{-- data rancangan --}}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

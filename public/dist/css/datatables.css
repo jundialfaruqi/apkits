@@ -347,7 +347,6 @@ table.dataTable tfoot th {
 table.dataTable > thead > tr > th,
 table.dataTable > thead > tr > td {
   padding: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 table.dataTable > thead > tr > th:active,
 table.dataTable > thead > tr > td:active {
@@ -529,10 +528,12 @@ div.dt-container div.dt-layout-row div.dt-layout-cell {
 div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-start {
   justify-content: flex-start;
   margin-right: auto;
+  margin-left: 18px;
 }
 div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
   justify-content: flex-end;
   margin-left: auto;
+  margin-right: 15px;
 }
 div.dt-container div.dt-layout-row div.dt-layout-cell:empty {
   display: none;
@@ -594,7 +595,7 @@ div.dt-container .dt-search input {
   padding: 5px;
   background-color: transparent;
   color: inherit;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 div.dt-container .dt-input {
   border: 1px solid #aaa;
@@ -610,7 +611,7 @@ div.dt-container .dt-input {
     border: 1px solid #aaa;
     border-radius: 10px;
     color: inherit;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 div.dt-container .dt-paging .dt-paging-button {
   box-sizing: border-box;
@@ -657,7 +658,7 @@ div.dt-container .dt-paging .dt-paging-button:hover {
 }
 div.dt-container .dt-paging .dt-paging-button:active {
   outline: none;
-  background-color: #0c0c0c;
+  background-color: #000000;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2b2b2b), color-stop(100%, #0c0c0c)); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%); /* Chrome10+,Safari5.1+ */
   background: -moz-linear-gradient(top, #2b2b2b 0%, #0c0c0c 100%); /* FF3.6+ */

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-xl-12">
-                    <div class="card border-0 rounded-4 shadow-sm">
+                    <div class="card rounded-4 shadow-sm">
                         <div class="card-header">
                             <a href="{{ route('roles.create') }}" class="btn btn-outline-black btn-sm rounded-3 px-2 py-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -21,18 +21,16 @@
                                 Tambah Role Baru
                             </a>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="roles-table" class="table table-hover table-striped table-vcenter table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Name</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
+                        <div class="table-responsive">
+                            <table id="roles-table" class="table table-hover table-striped table-vcenter table-sm border-top">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Role</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <div class="card rounded-4">
+                            <div class="card rounded-4 shadow-sm">
                                 <div class="card-body" id="itSupportChart"></div>
                                 @include('admin.partials.statistik-table', [
                                     'staffData' => $itSupportData,
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <div class="card rounded-4">
+                            <div class="card rounded-4 shadow-sm">
                                 <div class="card-body" id="thlChart"></div>
                                 @include('admin.partials.statistik-table', [
                                     'staffData' => $thlData,

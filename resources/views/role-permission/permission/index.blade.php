@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-xl-12">
-                    <div class="card border-0 rounded-4 shadow-sm">
+                    <div class="card rounded-4 shadow-sm">
                         <div class="card-header">
                             <a href="{{ route('permissions.create') }}"
                                 class="btn btn-outline-black btn-sm rounded-3 px-2 py-1">
@@ -22,21 +22,19 @@
                                 Tambah Permission Baru
                             </a>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="permissions-table" class="table table-hover table-vcenter table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th class="col-1 text-center">No</th>
-                                            <th>Name</th>
-                                            <th class="text-center">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Data akan diisi oleh DataTables melalui AJAX -->
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="table-responsive">
+                            <table id="permissions-table" class="table table-hover table-vcenter table-sm border-top">
+                                <thead>
+                                    <tr>
+                                        <th class="col-1 text-center">No</th>
+                                        <th>Nama Permission</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data akan diisi oleh DataTables melalui AJAX -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -6,11 +6,11 @@
                 @role('super-admin')
                     <th>OPD</th>
                 @endrole
-                <th>Kegiatan Bulan ini</th>
-                <th>Kegiatan Bulan lalu</th>
-                <th>Kegiatan Tahun ini</th>
-                <th>Kegiatan Tahun lalu</th>
-                <th>Total</th>
+                <th class="text-center">Bulan ini</th>
+                <th class="text-center">Bulan lalu</th>
+                <th class="text-center">Tahun ini</th>
+                <th class="text-center">Tahun lalu</th>
+                <th class="text-center">Total</th>
             </tr>
         </thead>
         <tbody>

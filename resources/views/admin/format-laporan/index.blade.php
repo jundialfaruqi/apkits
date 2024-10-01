@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-xl-12">
-                    <div class="card border-0 rounded-4 shadow-sm">
+                    <div class="card rounded-4 shadow-sm">
                         <div class="card-header">
                             <a href="{{ route('formatlaporan.create') }}"
                                 class="btn btn-outline-black btn-sm rounded-3 px-2 py-1">
@@ -22,28 +22,25 @@
                                 Buat Format Laporan Baru
                             </a>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="formatlaporans-table"
-                                    class="table table-striped table-hover table-vcenter table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th class="col-1 text-center">No</th>
-                                            <th>OPD</th>
-                                            <th>Bidang</th>
-                                            <th>Jabatan</th>
-                                            <th>Nama Pejabat</th>
-                                            <th>Pekerjaan Dibawahi</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {{-- data rancangan --}}
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="table-responsive">
+                            <table id="formatlaporans-table"
+                                class="table table-striped table-hover table-vcenter table-sm border-top">
+                                <thead>
+                                    <tr>
+                                        <th class="col-1 text-center">No</th>
+                                        <th>OPD</th>
+                                        <th>Bidang</th>
+                                        <th>Jabatan</th>
+                                        <th>Nama Pejabat</th>
+                                        <th>Pekerjaan Dibawahi</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{-- data rancangan --}}
+                                </tbody>
+                            </table>
                         </div>
-
                     </div>
                 </div>
             </div>

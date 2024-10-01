@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-xl-12">
-                    <div class="card border-0 rounded-4 shadow-sm">
+                    <div class="card rounded-4 shadow-sm">
                         <div class="card-header">
                             <div class="col-md-12">
                                 <div class="row">
@@ -129,30 +129,25 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card-body">
-
-                            <div class="table-responsive">
-
-                                <table id="rancangans-table"
-                                    class="table table-striped table-hover table-vcenter table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Kegiatan</th>
-                                            <th>Jenis Kegiatan</th>
-                                            <th>Tanggal Pekerjaan</th>
-                                            <th>Waktu dan Tempat</th>
-                                            <th>Pelaksanaan Kerja</th>
-                                            <th>Progress dalam 100%</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {{-- data todolist --}}
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="table-responsive">
+                            <table id="rancangans-table"
+                                class="table table-striped table-hover table-vcenter table-sm border-top">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Kegiatan</th>
+                                        <th>Jenis Kegiatan</th>
+                                        <th>Tanggal Pekerjaan</th>
+                                        <th>Waktu dan Tempat</th>
+                                        <th>Pelaksanaan Kerja</th>
+                                        <th>Progress dalam 100%</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{-- data todolist --}}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

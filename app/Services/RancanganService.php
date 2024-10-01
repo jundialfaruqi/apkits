@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\Rancangan;
-use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class RancanganService
 {

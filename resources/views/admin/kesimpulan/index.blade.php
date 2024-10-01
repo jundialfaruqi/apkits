@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-xl-12">
-                    <div class="card border-0 rounded-4 shadow-sm">
+                    <div class="card rounded-4 shadow-sm">
                         <div class="card-header">
                             <div class="col-md-12">
                                 <div class="row">
@@ -121,22 +121,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="kesimpulan-table" class="table table-striped table-hover table-vcenter table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th class="col-1 text-center">No</th>
-                                            <th>Tanggal</th>
-                                            <th>Isi Kesimpulan</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {{-- data kesimpulan --}}
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="table-responsive">
+                            <table id="kesimpulan-table" class="table table-striped table-hover table-vcenter table-sm border-top">
+                                <thead>
+                                    <tr>
+                                        <th class="col-1 text-center">No</th>
+                                        <th>Tanggal</th>
+                                        <th>Isi Kesimpulan</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{-- data kesimpulan --}}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
