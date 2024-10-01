@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use App\Models\Opd;
 use App\Models\User;
+use App\Models\Pekerjaan;
 use App\Models\Rancangan;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
@@ -21,8 +22,7 @@ class StatistikController extends Controller
         $currentMonth = Carbon::now()->month;
         $lastMonth = Carbon::now()->subMonth()->month;
 
-        $itSupportData = collect();
-        $thlData = collect();
+        $jobData = collect();
 
         if ($user->hasRole('super-admin')) {
             $opds = Opd::all();
@@ -30,20 +30,23 @@ class StatistikController extends Controller
             $opds = collect([$user->opd]);
         }
 
-        foreach ($opds as $opd) {
-            $itSupportUsers = $this->getUsersByJobAndOpd('IT Support', $opd->id);
-            $thlUsers = $this->getUsersByJobAndOpd('THL', $opd->id);
-            $itSupportData = $itSupportData->concat($this->processUserData($itSupportUsers, $currentYear, $lastYear, $currentMonth, $lastMonth));
-            $thlData = $thlData->concat($this->processUserData($thlUsers, $currentYear, $lastYear, $currentMonth, $lastMonth));
+        // Ambil semua jenis pekerjaan yang ada
+        $jobs = Pekerjaan::pluck('nama_pekerjaan')->unique();
+
+        foreach ($jobs as $job) {
+            $jobUsers = collect();
+            foreach ($opds as $opd) {
+                $jobUsers = $jobUsers->concat($this->getUsersByJobAndOpd($job, $opd->id));
+            }
+            $jobData[$job] = $this->processUserData($jobUsers, $currentYear, $lastYear, $currentMonth, $lastMonth);
         }
 
-        $itSupportChartData = $this->prepareChartData($itSupportData);
-        $thlChartData = $this->prepareChartData($thlData);
+        $chartData = $this->prepareChartData($jobData);
 
-        return view('admin.statistik.index', compact('title', 'itSupportChartData', 'thlChartData', 'currentYear', 'lastYear'));
+        return view('admin.statistik.index', compact('title', 'chartData', 'jobs', 'currentYear', 'lastYear'));
     }
 
-    public function getItSupportData()
+    public function getJobData($job)
     {
         $user = Auth::user();
         $currentYear = Carbon::now()->year;
@@ -57,38 +60,13 @@ class StatistikController extends Controller
             $opds = collect([$user->opd]);
         }
 
-        $itSupportData = collect();
+        $jobData = collect();
         foreach ($opds as $opd) {
-            $itSupportUsers = $this->getUsersByJobAndOpd('IT Support', $opd->id);
-            $itSupportData = $itSupportData->concat($this->processUserData($itSupportUsers, $currentYear, $lastYear, $currentMonth, $lastMonth));
+            $jobUsers = $this->getUsersByJobAndOpd($job, $opd->id);
+            $jobData = $jobData->concat($this->processUserData($jobUsers, $currentYear, $lastYear, $currentMonth, $lastMonth));
         }
 
-        return DataTables::of($itSupportData)
-            ->addIndexColumn()
-            ->make(true);
-    }
-
-    public function getThlData()
-    {
-        $user = Auth::user();
-        $currentYear = Carbon::now()->year;
-        $lastYear = $currentYear - 1;
-        $currentMonth = Carbon::now()->month;
-        $lastMonth = Carbon::now()->subMonth()->month;
-
-        if ($user->hasRole('super-admin')) {
-            $opds = Opd::all();
-        } else {
-            $opds = collect([$user->opd]);
-        }
-
-        $thlData = collect();
-        foreach ($opds as $opd) {
-            $thlUsers = $this->getUsersByJobAndOpd('THL', $opd->id);
-            $thlData = $thlData->concat($this->processUserData($thlUsers, $currentYear, $lastYear, $currentMonth, $lastMonth));
-        }
-
-        return DataTables::of($thlData)
+        return DataTables::of($jobData)
             ->addIndexColumn()
             ->make(true);
     }
@@ -135,26 +113,29 @@ class StatistikController extends Controller
         return Rancangan::where('user_id', $user->id)->count();
     }
 
-    private function prepareChartData($userData)
+    private function prepareChartData($jobData)
     {
-        $chartData = [
-            'categories' => [],
-            'series' => [
-                [
-                    'name' => 'Tahun Ini',
-                    'data' => []
-                ],
-                [
-                    'name' => 'Tahun Lalu',
-                    'data' => []
+        $chartData = [];
+        foreach ($jobData as $job => $userData) {
+            $chartData[$job] = [
+                'categories' => [],
+                'series' => [
+                    [
+                        'name' => 'Tahun Ini',
+                        'data' => []
+                    ],
+                    [
+                        'name' => 'Tahun Lalu',
+                        'data' => []
+                    ]
                 ]
-            ]
-        ];
+            ];
 
-        foreach ($userData as $data) {
-            $chartData['categories'][] = $data['name'];
-            $chartData['series'][0]['data'][] = $data['currentYearRancangan'];
-            $chartData['series'][1]['data'][] = $data['lastYearRancangan'];
+            foreach ($userData as $data) {
+                $chartData[$job]['categories'][] = $data['name'];
+                $chartData[$job]['series'][0]['data'][] = $data['currentYearRancangan'];
+                $chartData[$job]['series'][1]['data'][] = $data['lastYearRancangan'];
+            }
         }
 
         return $chartData;

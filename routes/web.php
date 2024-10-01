@@ -196,10 +196,8 @@ Route::get('/', [HomePageController::class, 'index'])->name('apkits');
 Route::group(['middleware' => ['auth', 'permission:view statistik']], function () {
     Route::get('/admin/statistik', [App\Http\Controllers\Admin\StatistikController::class, 'index'])
         ->name('statistik.index');
-    Route::get('/statistik/it-support-data', [StatistikController::class, 'getItSupportData'])
-        ->name('statistik.it-support-data');
-    Route::get('/statistik/thl-data', [StatistikController::class, 'getThlData'])
-        ->name('statistik.thl-data');
+    Route::get('admin/statistik/job-data/{job}', [StatistikController::class, 'getJobData'])
+        ->name('statistik.job-data');
 });
 
 require __DIR__ . '/auth.php';

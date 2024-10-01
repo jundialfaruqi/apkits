@@ -5,7 +5,8 @@
 --}}
 
 <div class="text-muted mb-5 hr-text">
-    Kegiatan {{ \Carbon\Carbon::today()->translatedFormat('F Y', 'id_ID') }}
+    Kegiatan {{ Auth::user()->opd->name }} Kota Pekanbaru
+    {{ \Carbon\Carbon::today()->translatedFormat('F Y', 'id_ID') }}
 </div>
 
 @if ($rancangans->isEmpty())

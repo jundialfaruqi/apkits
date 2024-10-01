@@ -23,7 +23,8 @@
                             </a>
                         </div>
                         <div class="table-responsive">
-                            <table id="pekerjaan-table" class="table table-striped table-hover table-vcenter table-sm border-top">
+                            <table id="pekerjaan-table"
+                                class="table table-striped table-hover table-vcenter table-sm border-top">
                                 <thead>
                                     <tr>
                                         <th class="col-1 text-center">No</th>

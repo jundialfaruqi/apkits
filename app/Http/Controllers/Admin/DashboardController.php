@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Rancangan;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,7 +52,7 @@ class DashboardController extends Controller
 
             // Hitung total rancangans
             $totalRancangans = Rancangan::count();
-        } else {
+        } elseif ($user->hasRole('admin')) {
             // Hitung user THL di OPD yang sama
             $thlCount = User::whereHas('formatlaporan.pekerjaanRelasi', function ($query) {
                 $query->where('nama_pekerjaan', 'THL');
@@ -96,6 +94,39 @@ class DashboardController extends Controller
             $totalRancangans = Rancangan::whereHas('user', function ($query) use ($user) {
                 $query->where('opd_id', $user->opd_id);
             })->count();
+        } else {
+            // Regular user - only show their own data
+
+            // Hitung user THL di OPD yang sama
+            $thlCount = User::whereHas('formatlaporan.pekerjaanRelasi', function ($query) {
+                $query->where('nama_pekerjaan', 'THL');
+            })
+                ->where('opd_id', $user->opd_id)
+                ->count();
+
+            // Hitung user IT Support di OPD yang sama
+            $itCount = User::whereHas('formatlaporan.pekerjaanRelasi', function ($query) {
+                $query->where('nama_pekerjaan', 'IT Support');
+            })
+                ->where('opd_id', $user->opd_id)
+                ->count();
+
+            // Hitung total rancangans milik user itu sendiri, hanya untuk hari ini
+            $totalRancangansToday = Rancangan::where('user_id', $user->id)
+                ->whereDate('tanggal', $today)
+                ->count();
+
+            // Hitung total rancangans milik user itu sendiri, hanya untuk bulan ini
+            $totalRancangansMounth = Rancangan::where('user_id', $user->id)
+                ->whereMonth('tanggal', Carbon::now()->format('m'))
+                ->whereYear('tanggal', Carbon::now()->format('Y'))
+                ->count();
+
+            // Hitung total rancangans milik user itu sendiri
+            $totalRancangans = Rancangan::where('user_id', $user->id)->count();
+
+            // For regular users, we don't need to get the THL users list
+            $thlUsers = collect();
         }
 
         // Query data even if the user doesn't have the permission
