@@ -77,7 +77,7 @@ class StatistikController extends Controller
 
     private function getUsersByJobAndOpd($jobName, $opdId)
     {
-        return User::with(['opd', 'formatlaporan.pekerjaanRelasi'])
+        return User::with(['opd', 'formatlaporan.pekerjaanRelasi', 'profilePhoto'])
             ->whereHas('formatlaporan.pekerjaanRelasi', function ($query) use ($jobName) {
                 $query->where('nama_pekerjaan', $jobName);
             })
@@ -91,8 +91,9 @@ class StatistikController extends Controller
             return [
                 'name' => $user->name,
                 'opd' => $user->opd->name,
-                'lastMonthRancangan' => $this->getRancanganCount($user, $currentYear, $lastMonth),
+                'profile_photo' => $user->profilePhoto ? asset('storage/' . $user->profilePhoto->photo_path) : null,
                 'currentMonthRancangan' => $this->getRancanganCount($user, $currentYear, $currentMonth),
+                'lastMonthRancangan' => $this->getRancanganCount($user, $currentYear, $lastMonth),
                 'currentYearRancangan' => $this->getRancanganCount($user, $currentYear),
                 'lastYearRancangan' => $this->getRancanganCount($user, $lastYear),
                 'totalRancangan' => $this->getTotalRancanganCount($user),

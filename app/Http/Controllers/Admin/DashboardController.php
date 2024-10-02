@@ -19,8 +19,10 @@ class DashboardController extends Controller
 
         $user = Auth::user();
         $today = Carbon::today();
-        $mounth = Carbon::now()->format('m');
+        $currentMonth = Carbon::now()->format('m');
         $year = Carbon::now()->format('Y');
+        $lastMonth = Carbon::now()->subMonth();
+        $lastYear = Carbon::now()->subYear();
 
         // Check if the user has permission to view the dashboard
         $hasPermission = $user->hasPermissionTo('view dashboard');
@@ -52,6 +54,14 @@ class DashboardController extends Controller
 
             // Hitung total rancangans
             $totalRancangans = Rancangan::count();
+
+            $totalRancangansLastMonth = Rancangan::whereMonth('tanggal', $lastMonth->format('m'))
+                ->whereYear('tanggal', $lastMonth->format('Y'))
+                ->count();
+
+            $totalRancangansCurrentYear = Rancangan::whereYear('tanggal', $year)->count();
+
+            $totalRancangansPreviousYear = Rancangan::whereYear('tanggal', $lastYear->format('Y'))->count();
         } elseif ($user->hasRole('admin')) {
             // Hitung user THL di OPD yang sama
             $thlCount = User::whereHas('formatlaporan.pekerjaanRelasi', function ($query) {
@@ -94,6 +104,25 @@ class DashboardController extends Controller
             $totalRancangans = Rancangan::whereHas('user', function ($query) use ($user) {
                 $query->where('opd_id', $user->opd_id);
             })->count();
+
+            $totalRancangansLastMonth = Rancangan::whereHas('user', function ($query) use ($user) {
+                $query->where('opd_id', $user->opd_id);
+            })
+                ->whereMonth('tanggal', $lastMonth->format('m'))
+                ->whereYear('tanggal', $lastMonth->format('Y'))
+                ->count();
+
+            $totalRancangansCurrentYear = Rancangan::whereHas('user', function ($query) use ($user) {
+                $query->where('opd_id', $user->opd_id);
+            })
+                ->whereYear('tanggal', $year)
+                ->count();
+
+            $totalRancangansPreviousYear = Rancangan::whereHas('user', function ($query) use ($user) {
+                $query->where('opd_id', $user->opd_id);
+            })
+                ->whereYear('tanggal', $lastYear->format('Y'))
+                ->count();
         } else {
             // Regular user - only show their own data
 
@@ -127,6 +156,19 @@ class DashboardController extends Controller
 
             // For regular users, we don't need to get the THL users list
             $thlUsers = collect();
+
+            $totalRancangansLastMonth = Rancangan::where('user_id', $user->id)
+                ->whereMonth('tanggal', $lastMonth->format('m'))
+                ->whereYear('tanggal', $lastMonth->format('Y'))
+                ->count();
+
+            $totalRancangansCurrentYear = Rancangan::where('user_id', $user->id)
+                ->whereYear('tanggal', $year)
+                ->count();
+
+            $totalRancangansPreviousYear = Rancangan::where('user_id', $user->id)
+                ->whereYear('tanggal', $lastYear->format('Y'))
+                ->count();
         }
 
         // Query data even if the user doesn't have the permission
@@ -146,7 +188,7 @@ class DashboardController extends Controller
         }
 
         // Pass the permission check result to the view
-        return view('admin.dashboard', compact('title', 'rancangans', 'hasPermission', 'thlCount', 'thlUsers', 'itCount', 'totalRancangans', 'totalRancangansToday', 'totalRancangansMounth'));
+        return view('admin.dashboard', compact('title', 'rancangans', 'hasPermission', 'thlCount', 'thlUsers', 'itCount', 'totalRancangans', 'totalRancangansToday', 'totalRancangansMounth', 'totalRancangansLastMonth', 'totalRancangansCurrentYear', 'totalRancangansPreviousYear'));
     }
 
     public function show($id)

@@ -4,15 +4,15 @@
 </div>
 --}}
 
-<div class="text-muted mb-5 hr-text"> 
-    Kegiatan 
-        @if(Auth::user()->opd)
-            {{ Auth::user()->opd->name }}
-        @else
-            Pemerintah
-        @endif
-            Kota Pekanbaru
-            {{ \Carbon\Carbon::today()->translatedFormat('F Y', 'id_ID') }}
+<div class="text-muted mb-5 hr-text">
+    Kegiatan
+    @if (Auth::user()->opd)
+        {{ Auth::user()->opd->name }}
+    @else
+        Pemerintah
+    @endif
+    Kota Pekanbaru
+    {{ \Carbon\Carbon::today()->translatedFormat('F Y', 'id_ID') }}
 </div>
 
 @if ($rancangans->isEmpty())
@@ -49,8 +49,9 @@
                             <div class="col-md-12">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
-                                        @if($rancangan->user->profilePhoto)
-                                            <span class="avatar rounded-circle" style="background-image: url({{ Storage::url($rancangan->user->profilePhoto->photo_path) }})"></span>
+                                        @if ($rancangan->user->profilePhoto)
+                                            <span class="avatar rounded-circle"
+                                                style="background-image: url({{ Storage::url($rancangan->user->profilePhoto->photo_path) }})"></span>
                                         @else
                                             <span class="avatar rounded-circle" style="background-image">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -71,7 +72,9 @@
                                                     <span class="strong">{{ $rancangan->user->name }}</span>
                                                 </small>
                                                 <small class="text-secondary">
-                                                    <span>{{ $rancangan->created_at->diffForHumans() }}</span>
+                                                    <span>{{ $rancangan->created_at->diffForHumans() }} -
+                                                        {{ $rancangan->created_at->translatedFormat('d F Y', 'id_ID') }}
+                                                    </span>
                                                 </small>
                                             </div>
                                             <small class="text-secondary">
