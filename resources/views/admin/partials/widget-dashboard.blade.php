@@ -7,14 +7,15 @@
                 <div class="col">
                     <div class="card-body rounded-4">
                         <h2 class="mb-2"><a href="#">Selamat Datang</a></h2>
-                        @role('super-admin')
-                            <p class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
-                                dan THL Pemerintah Kota Pekanbaru V.1.0</p>
-                        @endrole
-                        @role('it-support|admin|thl|staff|kabid|kadis')
-                            <p class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
-                                dan THL {{ Auth::user()->opd->name }} Kota Pekanbaru</p>
-                        @endrole
+                            @if(Auth::user()->opd)
+                                <p class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
+                                    dan THL {{ Auth::user()->opd->name }} Kota Pekanbaru
+                                </p>
+                            @else
+                                <p class="text-secondary">Di <b>APKITS</b>, Aplikasi Pelaporan Kegiatan IT Support
+                                    dan THL Pemerintah Kota Pekanbaru V.1.0
+                                </p>
+                            @endif
                         <div class="d-flex align-items-center mt-auto">
                             <div>
                                 <a href="#"

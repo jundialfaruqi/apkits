@@ -54,14 +54,20 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-user">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
-                            <path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" />
-                        </svg>
-                    </span>
+                    @if(auth()->user()->profilePhoto)
+                        <span class="avatar avatar-sm rounded-circle" style="background-image: url({{ Storage::url(auth()->user()->profilePhoto->photo_path) }})"></span>
+                    @else
+                        <span class="avatar avatar-sm rounded-circle" style="background-image">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="currentColor"
+                                class="icon icon-tabler icons-tabler-filled icon-tabler-user">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
+                                <path
+                                    d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z" />
+                            </svg>
+                        </span>
+                    @endif
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ Auth::user()->name }}</div>
                         <div class="mt-1 small text-secondary">{{ Auth::user()->role }}</div>
