@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\StatistikController;
 use App\Http\Controllers\Admin\KesimpulanController;
 use App\Http\Controllers\Admin\AllTodolistController;
 use App\Http\Controllers\HomePage\HomePageController;
+use App\Http\Controllers\Admin\ProfilePhotoController;
 use App\Http\Controllers\Admin\FormatLaporanController;
 
 // 1. Dashboard
@@ -171,6 +172,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('profile', [ProfileController::class, 'destroy'])
         ->name('profile.destroy')
         ->middleware('auth', 'permission:delete account');
+    Route::post('/profile/photo', [ProfilePhotoController::class, 'update'])->name('profile.photo.update');
+    Route::delete('/profile/photo', [ProfilePhotoController::class, 'destroy'])->name('profile.photo.destroy');
 });
 
 // Pekerjaan
