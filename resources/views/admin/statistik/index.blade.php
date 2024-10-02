@@ -17,6 +17,8 @@
                                         'tableId' => Str::slug($job) . '-table',
                                         'dataUrl' => route('statistik.job-data', ['job' => $job]),
                                         'title' => $job,
+                                        'currentMonthName' => $currentMonthName,
+                                        'lastMonthName' => $lastMonthName,
                                     ])
                                 </div>
                             </div>

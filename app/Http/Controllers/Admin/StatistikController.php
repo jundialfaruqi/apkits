@@ -19,8 +19,8 @@ class StatistikController extends Controller
         $user = Auth::user();
         $currentYear = Carbon::now()->year;
         $lastYear = $currentYear - 1;
-        $currentMonth = Carbon::now()->month;
-        $lastMonth = Carbon::now()->subMonth()->month;
+        $currentMonth = Carbon::now();
+        $lastMonth = $currentMonth->copy()->subMonth();
 
         $jobData = collect();
 
@@ -38,12 +38,16 @@ class StatistikController extends Controller
             foreach ($opds as $opd) {
                 $jobUsers = $jobUsers->concat($this->getUsersByJobAndOpd($job, $opd->id));
             }
-            $jobData[$job] = $this->processUserData($jobUsers, $currentYear, $lastYear, $currentMonth, $lastMonth);
+            $jobData[$job] = $this->processUserData($jobUsers, $currentYear, $lastYear, $currentMonth->month, $lastMonth->month);
         }
+
+        // Tambahkan nama bulan ke data yang dikirim ke view
+        $currentMonthName = $currentMonth->locale('id')->monthName;
+        $lastMonthName = $lastMonth->locale('id')->monthName;
 
         $chartData = $this->prepareChartData($jobData);
 
-        return view('admin.statistik.index', compact('title', 'chartData', 'jobs', 'currentYear', 'lastYear'));
+        return view('admin.statistik.index', compact('title', 'chartData', 'jobs', 'currentYear', 'lastYear', 'currentMonthName', 'lastMonthName'));
     }
 
     public function getJobData($job)
@@ -116,16 +120,19 @@ class StatistikController extends Controller
     private function prepareChartData($jobData)
     {
         $chartData = [];
+        $currentYear = Carbon::now()->year;
+        $lastYear = $currentYear - 1;
+
         foreach ($jobData as $job => $userData) {
             $chartData[$job] = [
                 'categories' => [],
                 'series' => [
                     [
-                        'name' => 'Tahun Ini',
+                        'name' => $currentYear,
                         'data' => []
                     ],
                     [
-                        'name' => 'Tahun Lalu',
+                        'name' => $lastYear,
                         'data' => []
                     ]
                 ]

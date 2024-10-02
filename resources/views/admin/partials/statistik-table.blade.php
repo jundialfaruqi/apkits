@@ -7,10 +7,10 @@
                 @role('super-admin')
                     <th>OPD</th>
                 @endrole
-                <th class="text-center">Bulan ini</th>
-                <th class="text-center">Bulan lalu</th>
-                <th class="text-center">Tahun ini</th>
-                <th class="text-center">Tahun lalu</th>
+                <th class="text-center">{{ $currentMonthName }}</th>
+                <th class="text-center">{{ $lastMonthName }}</th>
+                <th class="text-center">{{ $currentYear }}</th>
+                <th class="text-center">{{ $lastYear }}</th>
                 <th class="text-center">Total</th>
             </tr>
         </thead>
