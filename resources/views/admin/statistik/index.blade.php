@@ -34,8 +34,8 @@
     <script src="{{ asset('dist/libs/apexcharts/dist/apexcharts.min.js?1692870487') }}" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var currentYear = {{ $currentYear }};
             var lastYear = {{ $lastYear }};
+            var currentYear = {{ $currentYear }};
             var chartData = @json($chartData);
 
             Object.keys(chartData).forEach(function(job) {
@@ -83,7 +83,7 @@
                         strokeDashArray: 4
                     },
                     title: {
-                        text: job + ' ' + lastYear + ' & ' + currentYear,
+                        text: job + ' ' + currentYear + ' & ' + lastYear ,
                         align: 'center',
                         style: {
                             fontSize: '16px',

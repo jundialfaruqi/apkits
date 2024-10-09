@@ -129,11 +129,11 @@ class StatistikController extends Controller
                 'categories' => [],
                 'series' => [
                     [
-                        'name' => $currentYear,
+                        'name' => $lastYear,
                         'data' => []
                     ],
                     [
-                        'name' => $lastYear,
+                        'name' => $currentYear,
                         'data' => []
                     ]
                 ]
@@ -141,8 +141,8 @@ class StatistikController extends Controller
 
             foreach ($userData as $data) {
                 $chartData[$job]['categories'][] = $data['name'];
-                $chartData[$job]['series'][0]['data'][] = $data['currentYearRancangan'];
-                $chartData[$job]['series'][1]['data'][] = $data['lastYearRancangan'];
+                $chartData[$job]['series'][0]['data'][] = $data['lastYearRancangan'];
+                $chartData[$job]['series'][1]['data'][] = $data['currentYearRancangan'];
             }
         }
 

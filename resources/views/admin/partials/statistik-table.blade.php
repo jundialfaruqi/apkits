@@ -7,10 +7,10 @@
                 @role('super-admin')
                     <th>OPD</th>
                 @endrole
-                <th class="text-center">{{ $currentMonthName }}</th>
                 <th class="text-center">{{ $lastMonthName }}</th>
-                <th class="text-center">{{ $currentYear }}</th>
+                <th class="text-center">{{ $currentMonthName }}</th>
                 <th class="text-center">{{ $lastYear }}</th>
+                <th class="text-center">{{ $currentYear }}</th>
                 <th class="text-center">Total</th>
             </tr>
         </thead>
@@ -59,24 +59,25 @@
                             data: 'opd',
                             name: 'opd'
                         },
-                    @endrole {
-                        data: 'currentMonthRancangan',
-                        name: 'currentMonthRancangan',
-                        className: 'text-center'
-                    },
+                    @endrole 
                     {
                         data: 'lastMonthRancangan',
                         name: 'lastMonthRancangan',
                         className: 'text-center'
                     },
                     {
-                        data: 'currentYearRancangan',
-                        name: 'currentYearRancangan',
+                        data: 'currentMonthRancangan',
+                        name: 'currentMonthRancangan',
                         className: 'text-center'
                     },
                     {
                         data: 'lastYearRancangan',
                         name: 'lastYearRancangan',
+                        className: 'text-center'
+                    },
+                    {
+                        data: 'currentYearRancangan',
+                        name: 'currentYearRancangan',
                         className: 'text-center'
                     },
                     {
