@@ -11,9 +11,16 @@ class ProfilePhotoController extends Controller
 {
     public function update(Request $request)
     {
-        $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        $request->validate(
+            [
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ],
+            [
+                'photo.image' => 'File harus berupa gambar',
+                'photo.mimes' => 'File harus berupa jpeg,png,jpg, dan gif',
+                'photo.max' => 'File terlalu besar, file foto tidak boleh lebih dari 2Mb',
+            ]
+        );
 
         $user = auth()->user();
         $photo = $request->file('photo');

@@ -67,7 +67,7 @@ class TodolistController extends Controller
         $rancangan->save(); // Simpan instance $rancangan ke database
 
         // beralih ke halaman rancangan dan tampilkan pesan sukses
-        return redirect()->route('todolist.laporan')
+        return redirect()->route('dashboard')
             ->with('success', 'Todolist berhasil ditambahkan');
     }
 
@@ -155,7 +155,7 @@ class TodolistController extends Controller
         // ...
         $rancangan->save(); // <--- Tambahkan ini untuk menyimpan data ke database
         // beralih ke halaman rancangan dan tampilkan pesan sukses
-        return redirect()->route('todolist.laporan')
+        return redirect()->route('dashboard')
             ->with('success', 'Data Todolist berhasil diupdate');
     }
 
