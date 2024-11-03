@@ -173,12 +173,42 @@ class DashboardController extends Controller
 
         // Query data even if the user doesn't have the permission
         $query = Rancangan::with(['user:id,name,opd_id', 'user.opd:id,name'])
-            // ->whereDate('tanggal', Carbon::today())
-            ->whereMonth('tanggal', Carbon::now()->format('m'))
-            ->whereYear('tanggal', Carbon::now()->format('Y'))
-            ->select('id', 'user_id', 'jenis_kegiatan', 'tempat', 'pelaksanaan_kerja', 'foto', 'created_at')
-            ->orderBy('tanggal', 'desc');
+            ->select('id', 'user_id', 'jenis_kegiatan', 'tempat', 'pelaksanaan_kerja', 'foto', 'created_at', 'tanggal');
 
+        // Apply date filter
+        $filter = request('filter', 'Bulan Ini');
+
+        switch ($filter) {
+            case 'Hari Ini':
+                $query->whereDate('tanggal', Carbon::today());
+                break;
+
+            case 'Kemarin':
+                $query->whereDate('tanggal', Carbon::yesterday());
+                break;
+
+            case '7 Hari Terakhir':
+                $query->whereBetween('tanggal', [Carbon::now()->subDays(7), Carbon::now()]);
+                break;
+
+            case 'Bulan Ini':
+                $query->whereMonth('tanggal', Carbon::now()->format('m'))
+                    ->whereYear('tanggal', Carbon::now()->format('Y'));
+                break;
+
+            case 'Bulan Lalu':
+                $query->whereMonth('tanggal', Carbon::now()->subMonth()->format('m'))
+                    ->whereYear('tanggal', Carbon::now()->subMonth()->format('Y'));
+                break;
+
+            case '30 Hari Terakhir':
+                $query->whereBetween('tanggal', [Carbon::now()->subDays(30), Carbon::now()]);
+                break;
+        }
+
+        $query->orderBy('tanggal', 'desc');
+
+        // Apply role-based filtering
         if ($user->hasRole('super-admin')) {
             $rancangans = $query->paginate(10);
         } else {
@@ -187,8 +217,20 @@ class DashboardController extends Controller
             })->paginate(10);
         }
 
-        // Pass the permission check result to the view
-        return view('admin.dashboard', compact('title', 'rancangans', 'hasPermission', 'thlCount', 'thlUsers', 'itCount', 'totalRancangans', 'totalRancangansToday', 'totalRancangansMounth', 'totalRancangansLastMonth', 'totalRancangansCurrentYear', 'totalRancangansPreviousYear'));
+        return view('admin.dashboard', compact(
+            'title',
+            'rancangans',
+            'hasPermission',
+            'thlCount',
+            'thlUsers',
+            'itCount',
+            'totalRancangans',
+            'totalRancangansToday',
+            'totalRancangansMounth',
+            'totalRancangansLastMonth',
+            'totalRancangansCurrentYear',
+            'totalRancangansPreviousYear'
+        ));
     }
 
     public function show($id)

@@ -12,7 +12,38 @@
         Pemerintah
     @endif
     Kota Pekanbaru
-    {{ \Carbon\Carbon::today()->translatedFormat('F Y', 'id_ID') }}
+</div>
+
+<div class="d-flex justify-content-end mb-4">
+    <div class="dropdown">
+        <button class="btn dropdown-toggle rounded-4 border-0 shadow-sm" type="button" id="filterDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-filter" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                    d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.414 -4.414a2 2 0 0 1 -.586 -1.414v-2.172z">
+                </path>
+            </svg>
+            {{ request('filter', 'Bulan Ini') }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+            <li><a class="dropdown-item {{ request('filter') == 'Hari Ini' ? 'active' : '' }}"
+                    href="{{ request()->fullUrlWithQuery(['filter' => 'Hari Ini']) }}">Hari Ini</a></li>
+            <li><a class="dropdown-item {{ request('filter') == 'Kemarin' ? 'active' : '' }}"
+                    href="{{ request()->fullUrlWithQuery(['filter' => 'Kemarin']) }}">Kemarin</a></li>
+            <li><a class="dropdown-item {{ request('filter') == '7 Hari Terakhir' ? 'active' : '' }}"
+                    href="{{ request()->fullUrlWithQuery(['filter' => '7 Hari Terakhir']) }}">7 Hari Terakhir</a></li>
+            <li><a class="dropdown-item {{ request('filter') == 'Bulan Ini' ? 'active' : '' }}"
+                    href="{{ request()->fullUrlWithQuery(['filter' => 'Bulan Ini']) }}">Bulan Ini</a></li>
+            <li><a class="dropdown-item {{ request('filter') == 'Bulan Lalu' ? 'active' : '' }}"
+                    href="{{ request()->fullUrlWithQuery(['filter' => 'Bulan Lalu']) }}">Bulan Lalu</a></li>
+            <li><a class="dropdown-item {{ request('filter') == '30 Hari Terakhir' ? 'active' : '' }}"
+                    href="{{ request()->fullUrlWithQuery(['filter' => '30 Hari Terakhir']) }}">30 Hari Terakhir</a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 @if ($rancangans->isEmpty())
@@ -159,7 +190,8 @@
     </div>
 @endif
 
-<div class="modal fade" id="rancanganModal" tabindex="-1" aria-labelledby="rancanganModalLabel" aria-hidden="true">
+<div class="modal fade" id="rancanganModal" tabindex="-1" aria-labelledby="rancanganModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content rounded-4">
             <div class="modal-header">
